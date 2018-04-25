@@ -2,42 +2,50 @@
     include_once './lib/head.php';
 ?>
 
-
 <!-- Header with full-height image -->
-<div class="bgimg-1 w3-display-container w3-grayscale-min" style="height:51rem; padding: 7rem 2rem;"id="home">
-  <div class="w3-half w3-container" style="border: 1px solid black; padding: 3.5rem;">
-    <h2>JUST education</h2>
-    <div style="width: 40px; height:10px; background-color: black;"></div>
-    <span class="w3-large">Stop wasting valuable time with reserching coding branch.</span>
-    <a href="#about" class="w3-button w3-black w3-padding-large w3-medium w3-margin-top w3-opacity w3-hover-opacity-off" style="width:100%; padding:10px 0;">Learn more</a>
-  </div> 
-  <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+  <div class="w3-container w3-padding-64 w3-center" style="height:50rem; padding: 0px 3rem">
+    <h1 id="title">배우고, 나누는 코딩</h1>
+    <div style="width: 100%; height:1px; background-color: black;"></div>
+    <h1 class="w3-wide w3-padding-16 w3-large" style="width:100%">내가 만드는 코딩</h1>
+    <a href="#about" class="w3-button w3-black w3-padding-large w3-medium w3-opacity w3-hover-opacity-off" style="width:80%;">전체보기</a>
+    <div class="w3-padding-large">
+      <img src="./img_sum/amazon.jpeg" alt="Cherries" style="width:5rem">
+      <img src="./img_sum/android.jpg" alt="Cherries" style="width:5rem">
+      <img src="./img_sum/apple.jpeg" alt="Cherries" style="width:5rem">
+      <img src="./img_sum/Arduino.jpg" alt="Cherries" style="width:5rem">
+      <img src="./img_sum/google.jpg" alt="Cherries" style="width:5rem">
+      <img src="./img_sum/ifttt.jpeg" alt="Cherries" style="width:5rem">
+      <img src="./img_sum/micro-bit.jpeg" alt="Cherries" style="width:5rem">
+      <img src="./img_sum/Raspi.jpeg" alt="Cherries" style="width:5rem">
+    </div>
+  </div>
+ 
+  <!-- <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
     <i class="fa fa-instagram w3-hover-opacity"></i>
     <i class="fa fa-snapchat w3-hover-opacity"></i>
     <i class="fa fa-pinterest-p w3-hover-opacity"></i>
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
-  </div>
-  <div class="w3-half w3-container">
-      <img src="../img/main.83684950.png" alt="" style="width: 95%;">
+  </div> -->
+  <!-- <div class="w3-half w3-container"> -->
+      <!-- <img src="../img/main.83684950.png" alt="" style="width: 95%;"> -->
       <!-- <img src="../img/components.ea89c574.png" alt="" style="width: 55%;"> -->
-      
-  </div>
-</div>
+  <!-- </div> -->
+<!-- </div> -->
 <!-- Section -->
-<div class="w3-container" style="background-color: gray; height: 24rem; color: white; padding:5.5rem 2rem;">
+<!-- <div class="w3-container" style="background-color: gray; height: 24rem; color: white; padding:5.5rem 2rem;">
   <div class="w3-half w3-container" style="border-left: 2rem solid white; border-right:1px solid white">
     <h3>WE MAKE <br> THE FUTURE</h3> 
   </div> 
   <div class="w3-half w3-container">
     <p>Create something unique and exciting. Have fun as you interact with the digital world, and take the next step towards becoming an inventor.  </p>
   </div>  
-</div>
+</div> -->
 
 
 <!-- About Section -->
-<div class="w3-container" style="padding:128px 16px" id="about">
+<!-- <div class="w3-container" style="padding:128px 16px" id="about">
   <h3 class="w3-center">ABOUT THE COMPANY</h3>
   <p class="w3-center w3-large">Key features of our company</p>
   <div class="w3-row-padding w3-center" style="margin-top:64px">
@@ -62,10 +70,10 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Promo Section - "We know design" -->
-<div class="w3-container w3-light-grey" style="padding:128px 16px">
+<!-- <div class="w3-container w3-light-grey" style="padding:128px 16px">
   <div class="w3-row-padding">
     <div class="w3-col m6">
       <h3>We know design.</h3>
@@ -76,10 +84,10 @@
       <img class="w3-image w3-round-large" src="img/phone_buildings.jpg" alt="Buildings" width="700" height="394">
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Team Section -->
-<div class="w3-container" style="padding:128px 16px" id="team">
+<!-- <div class="w3-container" style="padding:128px 16px" id="team">
   <h3 class="w3-center">THE TEAM</h3>
   <p class="w3-center w3-large">The ones who runs this company</p>
   <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
@@ -128,10 +136,10 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Promo Section "Statistics" -->
-<div class="w3-container w3-row w3-center w3-dark-grey w3-padding-64">
+<!-- <div class="w3-container w3-row w3-center w3-dark-grey w3-padding-64">
   <div class="w3-quarter">
     <span class="w3-xxlarge">14+</span>
     <br>Partners
@@ -148,10 +156,10 @@
     <span class="w3-xxlarge">150+</span>
     <br>Meetings
   </div>
-</div>
+</div> -->
 
 <!-- Work Section -->
-<div class="w3-container" style="padding:128px 16px" id="work">
+<!-- <div class="w3-container" style="padding:128px 16px" id="work">
   <h3 class="w3-center">OUR WORK</h3>
   <p class="w3-center w3-large">What we've done for people</p>
 
@@ -184,19 +192,19 @@
       <img src="../img/tech_tableturner.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A tableturner">
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Modal for full size images on click-->
-<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+<!-- <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
   <span class="w3-button w3-xxlarge w3-black w3-padding-large w3-display-topright" title="Close Modal Image">×</span>
   <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
     <img id="img01" class="w3-image">
     <p id="caption" class="w3-opacity w3-large"></p>
   </div>
-</div>
+</div> -->
 
 <!-- Skills Section -->
-<div class="w3-container w3-light-grey w3-padding-64">
+<!-- <div class="w3-container w3-light-grey w3-padding-64">
   <div class="w3-row-padding">
     <div class="w3-col m6">
       <h3>Our Skills.</h3>
@@ -220,10 +228,10 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <!-- Pricing Section -->
-<div class="w3-container w3-center w3-dark-grey" style="padding:128px 16px" id="pricing">
+<!-- <div class="w3-container w3-center w3-dark-grey" style="padding:128px 16px" id="pricing">
   <h3>PRICING</h3>
   <p class="w3-large">Choose a pricing plan that fits your needs.</p>
   <div class="w3-row-padding" style="margin-top:64px">
@@ -276,7 +284,7 @@
       </ul>
     </div>
   </div>
-</div>
+</div> -->
 <!-- <div class="w3-row" style="margin-bottom:128px">
   <div class="w3-third">
     1
@@ -291,9 +299,9 @@
   
     3
   </div> -->
-</div>
+<!-- </div> -->
 <!-- Contact Section -->
-<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+<!-- <div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
   <h3 class="w3-center">CONTACT</h3>
   <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
   <div class="w3-row-padding" style="margin-top:64px">
@@ -315,16 +323,16 @@
       </form>
     </div>
     <div class="w3-half">
-      <!-- Add Google Maps -->
+      <!-- Add Google Maps 
       <div id="googleMap" class="w3-greyscale-max" style="width:100%; height:510px;"></div>
     </div>
   </div>
-</div>
+</div> -->
 
 
 
 <!-- Footer -->
-<footer class="w3-center w3-black w3-padding-64">
+<!-- <footer class="w3-center w3-black w3-padding-64">
   <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
   <div class="w3-xlarge w3-section">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
@@ -335,7 +343,7 @@
     <i class="fa fa-linkedin w3-hover-opacity"></i>
   </div>
 </footer>
- 
+  -->
 <!-- Add Google Maps -->
 <script>
 function myMap()
@@ -378,6 +386,7 @@ function w3_open() {
 function w3_close() {
     mySidebar.style.display = "none";
 }
+
 </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCs933UzjYy_fxRkGivV_7L6Ieo_S-yCtY&callback=myMap"></script>
 <!--

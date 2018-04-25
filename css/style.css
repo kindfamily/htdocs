@@ -1,17 +1,23 @@
 
 
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+body,h1,h2,h3,h4,h5,h6 {font-family: 'sans-serif';}
 body, html {
     height: 100%;
     line-height: 1.8;
 }
 
+#title{
+    /* text-shadow:3px 3px 0 rgb(204, 136, 35); */
+    padding: 0 1rem; 
+    font-size: 7rem; 
+    font-family: 'Black Han Sans', 'sans-serif';
+}
 
 /* Full height image header */
 .bgimg-1 {
     background-position: center;
     background-size: cover;
-    background-image: url("../img/heic0910e.jpg");
+    /* background-image: url("../img/heic0910e.jpg"); */
     /* min-height: 100%; */
 }
 .w3-bar .w3-button {
@@ -30,3 +36,8 @@ div, h3, p, i, header, img {
     top: 435px;
     z-index: -1;
 }
+
+@media(max-width:591px){
+    #title{
+        font-size: 3rem; 
+    }
