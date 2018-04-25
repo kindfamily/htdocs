@@ -3,20 +3,17 @@
 ?>
 
 <!-- Header with full-height image -->
-  <div class="w3-container w3-padding-64 w3-center" style="height:50rem; padding: 0px 3rem">
-    <h1 id="title">배우고, 나누는 코딩</h1>
+  <div class="w3-container w3-padding-64 w3-center" style="margin-top: 5.5rem">
+    <h1 id="title">배우고, 나누는</h1>
     <div style="width: 100%; height:1px; background-color: black;"></div>
-    <h1 class="w3-wide w3-padding-16 w3-large" style="width:100%">내가 만드는 코딩</h1>
-    <a href="#about" class="w3-button w3-black w3-padding-large w3-medium w3-opacity w3-hover-opacity-off" style="width:80%;">전체보기</a>
-    <div class="w3-padding-large">
-      <img src="./img_sum/amazon.jpeg" alt="Cherries" style="width:5rem">
-      <img src="./img_sum/android.jpg" alt="Cherries" style="width:5rem">
-      <img src="./img_sum/apple.jpeg" alt="Cherries" style="width:5rem">
-      <img src="./img_sum/Arduino.jpg" alt="Cherries" style="width:5rem">
-      <img src="./img_sum/google.jpg" alt="Cherries" style="width:5rem">
-      <img src="./img_sum/ifttt.jpeg" alt="Cherries" style="width:5rem">
-      <img src="./img_sum/micro-bit.jpeg" alt="Cherries" style="width:5rem">
-      <img src="./img_sum/Raspi.jpeg" alt="Cherries" style="width:5rem">
+    <h1 class="w3-wide w3-padding-16 w3-large" style="width:100%">플랫폼 커뮤니티</h1>
+    <a href="../php/community.php" class=" w3-round w3-button w3-black w3-padding-large w3-medium w3-opacity w3-hover-opacity-off" style="width:50%;">전체보기</a>
+    <div class="w3-padding-large w3-padding-32">
+      <img class="w3-opacity" src="./img_sum/apple.jpeg" alt="Cherries" style="width:4rem">
+      <img class="w3-opacity" src="./img_sum/Arduino.jpg" alt="Cherries" style="width:4rem">
+      <img class="w3-opacity" src="./img_sum/ifttt.jpeg" alt="Cherries" style="width:4rem">
+      <img class="w3-opacity" src="./img_sum/micro-bit.jpeg" alt="Cherries" style="width:4rem">
+      <img class="w3-opacity" src="./img_sum/Raspi.jpeg" alt="Cherries" style="width:4rem">
     </div>
   </div>
  
