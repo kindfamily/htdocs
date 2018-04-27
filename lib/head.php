@@ -1,4 +1,8 @@
 <?php
+require("./config/config.php");
+require("./lib/db.php");
+$conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
+
 session_start();
 
 $timeout = 1 ; // Set timeout minutes 
@@ -43,6 +47,10 @@ if(isset($user_name)) {
 <!DOCTYPE html>
 <html>
 <title>동네컴퓨터학원</title>
+
+
+<head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- (1) LoginWithNaverId Javscript SDK -->
@@ -54,14 +62,81 @@ if(isset($user_name)) {
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans:400" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./css/style.css">
-<body scroll="no">
+
+<style>
+
+/* scroll nav  */
+body {
+    margin: 0;
+    /* font-size: 28px; */
+  }
+  
+  .header {
+    background-color: #f1f1f1;
+    padding: 30px;
+    text-align: center;
+  }
+  
+  #navbar {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  #navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  #navbar a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  #navbar a.active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .content {
+    padding: 16px;
+  }
+  
+  .sticky {
+    position: fixed;
+    top: 3.4rem;
+    width: 100%;
+  }
+  
+  .sticky + .content {
+    padding-top: 60px;
+  }
+
+  @media(max-width:591px){
+    #title{
+        font-size: 3rem; 
+    }
+    .sticky {
+      position: fixed;
+      top: 2.5rem;
+      width: 100%;
+    }
+  }
+</style>
+</head>
+
+<body>
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
-  <div class="w3-bar w3-white w3-card" id="myNavbar">
-    <a href="../index.php" class="w3-bar-item w3-button w3-wide" style="padding: 0 1rem; font-size: 2.2rem; font-family: 'Black Han Sans', sans-serif;">동네컴퓨터학원</a>
+  <div class="w3-bar w3-white w3-border col-container" id="myNavbar">
+    <a id="mtitle" href="../index.php" class="w3-bar-item w3-button w3-wide">동네컴퓨터학원</a>
 
     <!-- Right-sided navbar links -->
-    <div class="w3-right w3-hide-small">
+    <div class="w3-right w3-hide-small" style="padding:6px;">
       <a href="../php/community.php" class="w3-bar-item w3-button"><i class="fa fa-user"></i>&nbsp;COMMUNITY</a>
   
         <!-- login mypage php -->

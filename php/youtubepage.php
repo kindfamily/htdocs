@@ -28,7 +28,7 @@ if($result === false){
 
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>동네컴퓨터학원</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -44,6 +44,14 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   bottom: 0;
   height: inherit;
 }
+
+tr, td, th, table{
+  border: 1px solid #a7dc65;
+}
+
+th{
+  background-color: grey;
+}
 </style>
 <body>
 
@@ -51,27 +59,28 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <div class="w3-top">
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-    <a href="#" class="w3-bar-item w3-button w3-theme-l1"></a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white"><?=$id?></a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Values</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">News</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Clients</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Partners</a>
+    <a href="../php/community.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">전체보기</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">스토리</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">소스코드</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">재료</a>
+    <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Clients</a> -->
+    <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Partners</a> -->
   </div>
 </div>
 
 <!-- Sidebar -->
-<!-- <nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" id="mySidebar">
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
     <i class="fa fa-remove"></i>
   </a>
   <h4 class="w3-bar-item"><b>Menu</b></h4>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
-</nav> -->
+
+  <a href="../php/community.php" class="w3-bar-item w3-button w3-hover-black">전체보기</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-black">스토리</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-black">소스코드</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-black">재료</a>
+</nav>
 
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
@@ -79,17 +88,20 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main" style="margin-left:200px; margin-right: 200px;">
   <div class="w3-row w3-padding-64">
-    <h1 class="w3-text-teal w3-center">Heading</h1>
-    <h4 class="w3-center">made by jungwonbong</h4>
+    <h1 class="w3-text-teal w3-center"><?=$row['title']?></h1>
+    <h4 class="w3-center">by jungwonbong <b>2018.04.29</b></h4>
+    
     <div class="w3-twothird w3-container">
       <?php
-        echo '<img src="../img/'.($row['link_img']).'" alt="Norway" style="width:100%" class="">';
+        echo '<img src="../img/'.($row['link_img']).'" alt="Norway" style="width:100%" class=""><h1>story</h1><p>'.($row['description']).'</p><iframe width="100%" height="500px" src="https://www.youtube.com/embed/Rrm8AeYEcFY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>';
       ?>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      
     </div>
     <div class="w3-third w3-container">
-      <div class="w3-border w3-padding-large w3-padding-64 w3-center">AD</div>
+      <div class="w3-border w3-padding-large w3-padding-64" >
+      <p>개요</p>
+      <p>리틀비츠 coding kit 을 활용해서 간단한 튜토리얼 프로젝트 진행</p>
+      </div>
       <div class="w3-border w3-padding-large w3-padding-64 w3-center">AD</div>
     </div>
   </div>
@@ -108,9 +120,51 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 
   <div class="w3-row">
     <div class="w3-twothird w3-container">
-      <h1 class="w3-text-teal">HINGS USED IN THIS PROJECT</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-        dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <table class="w3-table w3-margin">
+        <tr>
+          <th>이름</th>
+          <th>플랫폼</th>          
+          <th>사진</th>
+          <th>장바구니</th>
+        </tr>
+        <tr>
+          <td>button</td>
+          <td><img src="../img_sum/littlebits.png" style="width:10rem" alt=""></td>
+          <td><img src="../img_littlebits/button.jpg" style="width:10rem" alt=""></td>
+          <td><input type="button" value="+"></td>
+        </tr>
+        <tr>
+          <td>Jill</td>
+          <td>Jill</td>
+          <td>Smith</td>
+          <td>50</td>
+        </tr>
+        <tr>
+          <td>Jill</td>
+          <td>Jill</td>
+          <td>Smith</td>
+          <td>50</td>
+        </tr>
+        <tr>
+          <td>Jill</td>
+          <td>Jill</td>
+          <td>Smith</td>
+          <td>50</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>총합:5</td>
+        </tr>
+        <tr>  
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><input type="button" value="결제하기"></td>
+        </tr>
+
+      </table>
     </div>
     <!-- <div class="w3-third w3-container">
       <p class="w3-border w3-padding-large w3-padding-32 w3-center">AD</p>
@@ -129,16 +183,12 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
       <a class="w3-button w3-hover-black" href="#">»</a>
     </div>
   </div>
-
+ -->
   <footer id="myFooter">
     <div class="w3-container w3-theme-l2 w3-padding-32">
       <h4>Footer</h4>
     </div>
-
-    <div class="w3-container w3-theme-l1">
-      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-    </div>
-  </footer> -->
+  </footer>
 
 <!-- END MAIN -->
 </div>
