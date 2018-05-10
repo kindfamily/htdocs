@@ -4,7 +4,7 @@ require("../lib/db.php");
 $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
 
 
-$sql = "SELECT * FROM youtube LIMIT 30";
+$sql = "SELECT * FROM ck LIMIT 30";
 
 $result = mysqli_query($conn, $sql);
 // if(!isset($_POST['user_id']) || !isset($_POST['user_pw'])) exit;
@@ -41,14 +41,19 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <p class="w3-text-grey"></p>
   </div>
   <div class="w3-bar-block">
-    <a href="../index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i>홈</a> 
-    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>최신</a> 
-    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>연재</a> 
-    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw w3-margin-right"></i>새로만들기</a> 
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-envelope fa-fw w3-margin-right"></i>인원별</a>
+    <!-- 
+    <i class="fa fa-envelope fa-fw w3-margin-right"></i>
+    <i class="fa fa-user fa-fw w3-margin-right"></i> -->
+    <a href="../index.php" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-home fa-fw"></i> 홈</a> 
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-fighter-jet fa-fw"></i> 최신</a> 
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-heart fa-fw"></i> 인기</a> 
+    <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-youtube-play fa-fw"></i> 연재</a> 
+    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i> 수준별</a>
   </div>
 </nav>
 
+
+ 
 <!-- Overlay effect when opening sidebar on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
@@ -57,24 +62,34 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
   <!-- Header -->
   <header id="portfolio">
-    <a href="../index.php"><img src="../img/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+    <a href="../index.php"><img src="../img/avatar3.png" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
     <h1><b>프로젝트</b></h1>
     <div class="w3-section w3-bottombar w3-padding-16">
       <span class="w3-margin-right">Filter:</span> 
-      <button class="w3-button w3-black">ALL</button>
-      <button class="w3-button w3-white"><i class="fa fa-diamond w3-margin-right"></i>최신</button>
-      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-photo w3-margin-right"></i>연재</button>
-      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>새로만들기</button>
+      <button class="w3-button w3-black"><i class="fa fa-sun-o fa-fw"></i> 전체</button>
+      <button class="w3-button w3-white"><i class="fa fa-fighter-jet fa-fw"></i> 최신</button>
+      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-heart fa-fw"></i> 인기</button>
+      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-youtube-play fa-fw"></i> 연재</button>
+      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-users fa-fw"></i> 수준별</button>
+      <!-- <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>새로만들기</button> -->
     </div>
   </header>
-  
   <!-- Photo Grid-->
   <div class="w3-row-padding">
   <?php
     while($row = mysqli_fetch_assoc($result)){
-      echo '<div class="w3-third w3-container w3-margin-bottom"><a href="youtubepage.php?id='.$row['id'].'"><img src="../img/'.($row['link_img']).'" alt="Norway" style="width:100%" class="w3-hover-opacity"></a><div class="w3-container w3-white"><p>'.($row['title']).'</p><p>'.($row['description']).'</p></div></div>';
+      echo '
+      <div class="w3-third w3-container w3-margin-bottom">
+        <a href="youtubepage.php?id='.$row['id'].'">
+          <img src="../PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity">
+        </a>
+        <div class="w3-container w3-white">
+          <p>'.($row['title']).'</p>
+          <p>'.($row['content']).'</p>
+        </div>
+      </div>';
     }
   ?>
 

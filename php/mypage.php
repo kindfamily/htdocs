@@ -19,7 +19,7 @@ require("../config/config.php");
 require("../lib/db.php");
 $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
 
-$sql = "SELECT * FROM user";
+$sql = "SELECT * FROM user LEFT JOIN user_type ON user.m_type = user_type.id";
 $result = mysqli_query($conn, $sql);
 $num_rows = mysqli_num_rows($result);
 
@@ -94,37 +94,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </header>
 
   <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
-      <div class="w3-container w3-red w3-padding-16">
-        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>52</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Messages</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>99</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Views</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-teal w3-padding-16">
-        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>23</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Shares</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
+  <div class="w3-quarter">
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
         <div class="w3-right">
@@ -136,7 +106,81 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <h4>Users</h4>
       </div>
     </div>
+   
+   
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>0</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Messages</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>0</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Views</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-teal w3-padding-16">
+        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>0</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Shares</h4>
+      </div>
+    </div>
+    
   </div>
+
+  
+  <hr>
+
+  <div class="w3-container">
+    <h5>가입자 현황(<?=$num_rows?>)</h5>
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+    <?php
+      while($row = mysqli_fetch_assoc($result)){
+        echo '<tr><td>'.($row['m_id']).'('.($row['m_name']).')</td><td>'.($row['type']).'</td></tr>';
+      }
+    ?>
+    </table><br>
+    <h5>프로젝트 리스트</h5>
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+     <?php
+      $sql = "SELECT * FROM youtube";
+      $result = mysqli_query($conn, $sql);
+  
+      while($row = mysqli_fetch_assoc($result)){
+        echo '<tr><td>'.($row['title']).'</td></tr>';
+      }
+    ?>
+    </table><br>
+    <a href="../PHPMySqlFileUpload/samples/index.php">ck 테이블에 내용 추가하기 링크 </a>
+    <form class="w3-container w3-card-4 w3-light-grey">
+      <h2>프로젝트 삽입하기</h2>
+      <a href="../ckeditor-full/samples/index.php">글쓰기</a>
+      <!-- <p>Add the w3-border class to create bordered inputs.</p> -->
+
+      <p><label>제목</label>
+      <input class="w3-input w3-border" name="first" type="text"></p>
+
+      <p><label>삽입링크</label>
+            
+      <input class="w3-input w3-border" name="last" type="text"></p>
+
+      <p><button class="w3-btn w3-blue">Register</button></p>
+    </form>
+  </div>
+  <hr>
 
   <div class="w3-panel">
     <div class="w3-row-padding" style="margin:0 -16px">
@@ -204,52 +248,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-center w3-padding w3-red" style="width:75%">75%</div>
     </div>
   </div>
-  <hr>
+<hr>
 
-  <div class="w3-container">
-    <h5>유튜브 리스트</h5>
-    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-      <tr>
-        <td>United States</td>
-        <td>65%</td>
-      </tr>
-      <tr>
-        <td>UK</td>
-        <td>15.7%</td>
-      </tr>
-      <tr>
-        <td>Russia</td>
-        <td>5.6%</td>
-      </tr>
-      <tr>
-        <td>Spain</td>
-        <td>2.1%</td>
-      </tr>
-      <tr>
-        <td>India</td>
-        <td>1.9%</td>
-      </tr>
-      <tr>
-        <td>France</td>
-        <td>1.5%</td>
-      </tr>
-    </table><br>
-    <form class="w3-container w3-card-4 w3-light-grey">
-      <h2>유튜브 삽입하기</h2>
-      <!-- <p>Add the w3-border class to create bordered inputs.</p> -->
-
-      <p><label>제목</label>
-      <input class="w3-input w3-border" name="first" type="text"></p>
-
-      <p><label>삽입링크</label>
-      <input class="w3-input w3-border" name="last" type="text"></p>
-
-      <p><button class="w3-btn w3-blue">Register</button></p>
-    </form>
-
-   
-  </div>
-  <hr>
   <div class="w3-container">
     <h5>Recent Users</h5>
     <ul class="w3-ul w3-card-4 w3-white">

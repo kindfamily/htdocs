@@ -21,31 +21,45 @@
     
   </div>
 
+  <a href=""></a>
+
   <div id="navbar" class="tab">
-    <a class="tablinks" onclick="openCity(event, 'London')" href="javascript:void(0)">전체</a>
+    <a id="first" class="tablinks" onclick="openCity(event, 'London')" href="javascript:void(0)">전체</a>
     <a class="tablinks" onclick="openCity(event, 'Paris')" href="javascript:void(0)">최신</a>
     <a class="tablinks" onclick="openCity(event, 'Tokyo')" href="javascript:void(0)">인기</a>
-    <a class="tablinks" onclick="openCity(event, 'Tokyo')" href="javascript:void(0)">더보기</a>
+    <a href="./php/community.php">더보기</a>
   </div>
   <div id="London" class="tabcontent">
     <div class="w3-row-padding">
       <?php
-        $sql = "SELECT * FROM youtube LIMIT 30";
+        $sql = "SELECT * FROM ck LIMIT 30";
         $result = mysqli_query($conn, $sql);
           while($row = mysqli_fetch_assoc($result)){
-            echo '<div class="w3-third w3-container w3-margin-bottom"><a href="./php/youtubepage.php?id='.$row['id'].'"><img src="../img/'.($row['link_img']).'" alt="Norway" style="width:100%" class="w3-hover-opacity"></a><div class="w3-container w3-white"><p><b>'.($row['title']).'</b></p><p>'.($row['description']).'</p></div></div>';
+            echo '<div class="w3-third w3-container w3-margin-bottom"><a href="./php/youtubepage.php?id='.$row['id'].'"><img src="./PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity"></a><div class="w3-container w3-white"><p><b>'.($row['title']).'</b></p><p>'.($row['content']).'</p></div></div>';
           }
         ?> 
     </div>
   </div>
   <div id="Paris" class="tabcontent">
-    <h3>Paris</h3>
-    <p>Paris is the capital of France.</p> 
+    <div class="w3-row-padding">
+      <?php
+        $result = mysqli_query($conn, $sql);
+          while($row = mysqli_fetch_assoc($result)){
+            echo '<div class="w3-third w3-container w3-margin-bottom"><a href="./php/youtubepage.php?id='.$row['id'].'"><img src="./PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity"></a><div class="w3-container w3-white"><p><b>'.($row['title']).'</b></p><p>'.($row['content']).'</p></div></div>';
+          }
+      ?> 
+    </div>
   </div>
 
   <div id="Tokyo" class="tabcontent">
-    <h3>Tokyo</h3>
-    <p>Tokyo is the capital of Japan.</p>
+    <div class="w3-row-padding">   
+      <?php
+        $result = mysqli_query($conn, $sql);
+          while($row = mysqli_fetch_assoc($result)){
+            echo '<div class="w3-third w3-container w3-margin-bottom"><a href="./php/youtubepage.php?id='.$row['id'].'"><img src="../img/'.($row['link_img']).'" alt="Norway" style="width:100%" class="w3-hover-opacity"></a><div class="w3-container w3-white"><p><b>'.($row['title']).'</b></p><p>'.($row['content']).'</p></div></div>';
+          }
+      ?> 
+    </div>
   </div>
 
 
@@ -123,6 +137,8 @@ function myFunction() {
   }
 }
 
+document.getElementById("first").onload = openCity(event, 'London');
+
 // SHOW DANAMIC TAP
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
@@ -130,6 +146,8 @@ function openCity(evt, cityName) {
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
+
+    // document.getElementById(London).style.display = "block";
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");

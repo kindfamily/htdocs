@@ -1,0 +1,104 @@
+
+<html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+table, tr, td, th{
+    border: 1px solid
+}
+
+       .number-table {
+    font-size: 12px;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #CCC;
+    
+    th,
+    td {
+        padding: 6px 10px;
+        border-top: 1px solid #CCC;
+        border-left: 1px solid #CCC;
+        &:first-child {
+          border-left: 0 none;
+        }
+    }
+    th {
+        text-align: center;
+        font-weight: normal;
+        background: #eee;
+    }
+    tfoot {
+        th,
+        td {
+            border-top: 2px solid #ccc;
+        }
+    }
+}
+
+.table-cell {
+    @for $i from 1 through 10 {
+        &-1of#{$i} {
+          width: percentage(1/$i);
+        }
+    }
+
+    &-3of5 { width: 60%; }
+    &-2of3 { width: 66.66%; }
+    &-3of4 { width: 75%; }
+    &-4of5 { width: 80%; }
+    &-5of6 { width: 83.33%; }
+}
+
+.readable-hidden {  
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px); // for IE6, IE7
+    clip: rect(1px, 1px, 1px, 1px);
+}
+    </style>
+    <body>
+        
+        <table class="number-table">
+            <caption class="readable-hidden">정아람의 고등학교 전 학년 성적표</caption>
+            <colgroup>
+                <col width="25%"> <!-- (X) html5 이전에 작성하던 방식입니다. 지양하도록 합니다. -->
+                <col style="width:25%;"> <!-- (O) Style Attribute를 이용해 적어주거나 -->
+                <col class="table-cell-1of4" span="2"> <!-- (O) Class를 지정해서 스타일을 입혀줍니다. -->
+            </colgroup>
+            <thead>
+                <tr>
+                    <th scope="col">이름</th>
+                    <th scope="col">플랫폼</th>
+                    <th scope="col">사진</th>
+                    <th scope="col">장바구니</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">button</th>
+                    <td><img src="./img_sum/littlebits.png" style="width:10rem" alt=""></td><td><img src="../img_littlebits/button.jpg" style="width:10rem" alt=""></td><td>+</td>
+                </tr>
+                <tr>
+                    <th scope="row">영어</th>
+                    <td>80</td><td>90</td><td>80</td>
+                </tr>
+                <tr>
+                    <th scope="row">수학</th>
+                    <td>70</td><td>80</td><td>70</td>
+                </tr>
+                <tr>
+                    <th scope="row">역사</th>
+                    <td>90</td><td>100</td><td>90</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th scope="row">평균</th>
+                    <td>85</td><td>90</td><td>85</td>
+                </tr>
+            </tfoot>
+        </table>
+    </body>
+</html>

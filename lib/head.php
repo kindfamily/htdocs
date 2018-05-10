@@ -71,21 +71,16 @@ body {
     /* font-size: 28px; */
   }
   
-  .header {
-    background-color: #f1f1f1;
-    padding: 30px;
-    text-align: center;
-  }
-  
   #navbar {
     overflow: hidden;
-    background-color: #333;
+    color: black;
+    background-color: white;
   }
   
   #navbar a {
     float: left;
     display: block;
-    color: #f2f2f2;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
