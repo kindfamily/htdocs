@@ -102,7 +102,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       echo '
       <div class="w3-third w3-container w3-margin-bottom">
         <a href="youtubepage.php?id='.$row['id'].'">
-          <img src="../PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity">
+          <img src="../editor/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity">
         </a>
         <div class="w3-container w3-white">
           <p>'.($row['title']).'</p>
