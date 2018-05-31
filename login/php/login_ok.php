@@ -33,16 +33,12 @@ if(!isset($_SESSION['user_id']))
 {
         header('Location: ../signin.php');
 }
-
 if($_SESSION['user_type'] === '관리자'){
         header('Location: ../../php/mypage.php');
-        
 }
-
 if($_SESSION['user_type'] === '일반회원'){
         header('Location: ../../php/community.php');
 }
-
 if($_SESSION['user_type'] === '네이버'){
         header('Location: ../../php/community.php');
 }

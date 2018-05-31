@@ -1,16 +1,8 @@
 <?php
+require("../config/session.php");
 require("../config/config.php");
 require("../lib/db.php");
 $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
-
-// if(!isset($_POST['user_id']) || !isset($_POST['user_pw'])) exit;
-
-// if(!isset($_GET['id'])) exit;
-
-// $filtered = array(
-//         'user_id'=>mysqli_real_escape_string($conn, $_GET['id'])
-// );
-
 
 $id = $_GET['id'];
 $sql = "SELECT * FROM ck WHERE id='".$id."'";
@@ -23,6 +15,22 @@ if($result === false){
 }
 
 
+$user_info = '';
+if(isset($user_name)) {
+    $user_info = $user_info."$user_name($user_type)"; 
+} else {
+    $user_info = $user_info.""; 
+}
+
+$update = '';
+$delete = '';
+if($user_type === '관리자') {
+    $update = $update."<a href='../editor/samples/update.php?id=".$row['id']."' class='w3-button w3-white w3-border w3-round-large'>관리자권한수정</a>";
+    $delete = $delete."<a href='../editor/samples/delete.php?id=".$row['id']."' class='w3-button w3-white w3-border w3-round-large'>관리자권한삭제</a>";  
+} else {
+    $update = $update.""; 
+    $delete = $delete.""; 
+}
 
 ?>
 
@@ -37,8 +45,6 @@ if($result === false){
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet" href="../css/fontello.css">
-
-
 
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
@@ -132,6 +138,7 @@ table, tr, td, th{
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">스토리</a>
     <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">소스코드</a> -->
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">재료</a>
+    <span class="w3-bar-item w3-right w3-hide-small"><?=$user_info?></span>
     <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Clients</a> -->
     <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Partners</a> -->
   </div>
@@ -156,13 +163,12 @@ table, tr, td, th{
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main" style="margin-left:200px; margin-right: 200px;">
   <div class="w3-row w3-padding-64">
-    <h1 class="w3-center w3-border-bottom"><?=$row['title']?></h1>
+    <h2 class="w3-center w3-border-bottom"><?=$row['title']?>(<?=$row['id']?>)</h2>
     <h6 class="w3-center">jungwonbong</h6>
     <h6 class="w3-center">2018.04.29</h6>
-    
     <div class="w3-twothird w3-container">
       <?php
-        echo '<img src="../PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class=""><h1 id="video">비디오</h1><p>'.($row['content']).'</p>';
+        echo '<img src="../PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity"><h3 id="video">설명</h3><p>'.($row['content']).'</p>';
       ?>
       
       <!-- 반응형 youtube 테두리  -->
@@ -173,13 +179,17 @@ table, tr, td, th{
       <h3>개요</h3>
       <p class="w3-border-bottom"></p>
       <p>리틀비츠 coding kit 을 활용해서 간단한 튜토리얼 프로젝트 진행</p>
-      <ul>
+      <a href="https://www.amazon.com/littleBits-680-0010-Education-Code-Kit/dp/B06XCL5S6D/ref=sr_1_1_sspa?ie=UTF8&qid=1525961162&sr=8-1-spons&keywords=littlebits+code+kit&psc=1" class="w3-button w3-white w3-border w3-round-large">제품구매링크</a>
+      
+      <?=$update?>
+      <?=$delete?>
+      <!-- <ul>
         <li><a href="#video">비디오</a></li>
         <li>설명</li>
-        <!-- <li>소스코드</li> -->
+        <li>소스코드</li>
         <li>부품구매</li>
         <li>댓글</li>
-      </ul>
+      </ul> -->
       
       </div>
       <!-- <div class="w3-border w3-padding-large w3-padding-24 w3-center">AD</div> -->
@@ -198,38 +208,42 @@ table, tr, td, th{
     </div>
   </div> -->
 
+
+  
+  
+  
     <div class="w3-twothird w3-container">
-        <table class="number-table w3-center">
+        <table class="number-table w3-center" style="margin-bottom: 5rem">
             <thead>
                 <tr>
+                    <th scope="col">플랫폼</th>
                     <th scope="col">이름</th>
                     <th scope="col">사진</th>
+                    <th scope="col">가격</th>
+                    <th scope="col">링크</th>
                 </tr>
             </thead>
-          
                   <?php
-                    $sql = "SELECT * FROM userfiles LEFT JOIN ck ON userfiles.editorid = ck.id WHERE userfiles.editorid = '$id'";
+
+                    $sql = "SELECT * FROM ck LEFT JOIN items ON ck.itemNum = items.id WHERE ck.id = '$id'";
 
                     $result = mysqli_query($conn, $sql);
-
-
 
                     $result = mysqli_query($conn, $sql);
                     while($row = mysqli_fetch_assoc($result)){
                     echo '
                     <tbody>
                         <tr>
-                          <td>리틀빗</td>
-                          <td><img src="../PHPMySqlFileUpload/samples/Upload/'.$row['FileName'].'" style="width:8rem" alt=""></td>
-                        </tr>
+                          <td>'.$row['platform'].'</td>
+                          <td>'.$row['name'].'</td>
+                          <td><img src="../'.$row['path'].'/'.$row['fileName'].'" style="width:8rem" alt=""></td>
+                          <td>'.$row['price'].'$</td>
+                          <td><a href="'.$row['price'].'"><button class="w3-button w3-white w3-border"><i class="fa fa-bars"></i></button></a></td>
                     </tbody>
                     
                     ';
                     }
                   ?> 
-
-              
-
         </table>
     </div>
     <!-- <div class="w3-third w3-container">
@@ -250,9 +264,28 @@ table, tr, td, th{
 </div>
 
 <footer id="myFooter">
-  <div class="w3-container w3-theme-l2 w3-padding-32">
-    <!-- <h4>powered by dongnecom</h4> -->
-  </div>
+<div class="w3-container w3-dark-grey w3-padding-32">
+    <div class="w3-row">
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-green">Demographic</h5>
+        <p>Language</p>
+        <p>Country</p>
+        <p>City</p>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-red">System</h5>
+        <p>Browser</p>
+        <p>OS</p>
+        <p>More</p>
+      </div>
+      <div class="w3-container w3-third">
+        <h5 class="w3-bottombar w3-border-orange">Target</h5>
+        <p>Users</p>
+        <p>Active</p>
+        <p>Geo</p>
+        <p>Interests</p>
+      </div>
+    </div>
 </footer>
 <script>
 
@@ -263,8 +296,6 @@ $(document).ready(function(){
         $("#test").val(num);
     });
 });
-
-
 
 // Get the Sidebar
 var mySidebar = document.getElementById("mySidebar");

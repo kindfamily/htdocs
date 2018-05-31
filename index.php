@@ -9,14 +9,14 @@
     <h1 class="w3-wide w3-padding-16 w3-large" style="width:100%">플랫폼 커뮤니티</h1>
     <a href="../php/community.php" class=" w3-round w3-button w3-black w3-padding-large w3-medium w3-opacity w3-hover-opacity-off" style="width:50%;">전체보기</a>
     <div class="w3-padding-large w3-padding-64">
-      <img class="w3-opacity" src="./img_sum/apple.jpeg" alt="Cherries" style="width:4rem">
-      <img class="w3-opacity" src="./img_sum/Arduino.jpg" alt="Cherries" style="width:4rem">
-      <img class="w3-opacity" src="./img_sum/ifttt.jpeg" alt="Cherries" style="width:4rem">
-      <img class="w3-opacity" src="./img_sum/micro-bit.jpeg" alt="Cherries" style="width:4rem">
-      <img class="w3-opacity" src="./img_sum/Raspi.jpeg" alt="Cherries" style="width:4rem">
-      <img class="w3-opacity" src="./img_sum/amazon.jpeg" alt="Cherries" style="width:4rem">
-      <img class="w3-opacity" src="./img_sum/google.jpg" alt="Cherries" style="width:4rem">
-      <img class="w3-opacity" src="./img_sum/ubuntu.jpeg" alt="Cherries" style="width:4rem">
+      <img class="w3-opacity" src="./img/platform/apple.jpeg" alt="Cherries" style="width:4rem">
+      <img class="w3-opacity" src="./img/platform/Arduino.jpg" alt="Cherries" style="width:4rem">
+      <img class="w3-opacity" src="./img/platform/ifttt.jpeg" alt="Cherries" style="width:4rem">
+      <img class="w3-opacity" src="./img/platform/micro-bit.jpeg" alt="Cherries" style="width:4rem">
+      <img class="w3-opacity" src="./img/platform/Raspi.jpeg" alt="Cherries" style="width:4rem">
+      <img class="w3-opacity" src="./img/platform/amazon.jpeg" alt="Cherries" style="width:4rem">
+      <img class="w3-opacity" src="./img/platform/google.jpg" alt="Cherries" style="width:4rem">
+      <img class="w3-opacity" src="./img/platform/ubuntu.jpeg" alt="Cherries" style="width:4rem">
     </div>
     
   </div>
@@ -29,24 +29,44 @@
     <a class="tablinks" onclick="openCity(event, 'Tokyo')" href="javascript:void(0)">인기</a>
     <a href="./php/community.php">더보기</a>
   </div>
-  <div id="London" class="tabcontent">
+  <div id="London" class="tabcontent"></a>
     <div class="w3-row-padding">
       <?php
         $sql = "SELECT * FROM ck LIMIT 30";
         $result = mysqli_query($conn, $sql);
           while($row = mysqli_fetch_assoc($result)){
-            echo '<div class="w3-third w3-container w3-margin-bottom"><a href="./php/youtubepage.php?id='.$row['id'].'"><img src="./PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity"></a><div class="w3-container w3-white"><p><b>'.($row['title']).'</b></p><p>'.($row['content']).'</p></div></div>';
+            echo '
+            <div class="w3-third w3-container w3-margin-bottom"><a href="./php/youtubepage.php?id='.$row['id'].'">
+            <a href="./php/youtubepage.php?id='.$row['id'].'"><img src="./PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity">
+            </a>
+            <p>
+               <b>'.($row['title']).'</b>
+            </p>
+            </div>
+           
+            ';
           }
         ?> 
     </div>
   </div>
+
   <div id="Paris" class="tabcontent">
+  
     <div class="w3-row-padding">
       <?php
-        $result = mysqli_query($conn, $sql);
-          while($row = mysqli_fetch_assoc($result)){
-            echo '<div class="w3-third w3-container w3-margin-bottom"><a href="./php/youtubepage.php?id='.$row['id'].'"><img src="./PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity"></a><div class="w3-container w3-white"><p><b>'.($row['title']).'</b></p><p>'.($row['content']).'</p></div></div>';
-          }
+      $result = mysqli_query($conn, $sql);
+      while($row = mysqli_fetch_assoc($result)){
+        echo '
+        <div class="w3-third w3-container w3-margin-bottom"><a href="./php/youtubepage.php?id='.$row['id'].'">
+        <a href="./php/youtubepage.php?id='.$row['id'].'"><img src="./PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity">
+        </a>
+        <p>
+           <b>'.($row['title']).'</b>
+        </p>
+        </div>
+       
+        ';
+      }
       ?> 
     </div>
   </div>
@@ -54,10 +74,19 @@
   <div id="Tokyo" class="tabcontent">
     <div class="w3-row-padding">   
       <?php
-        $result = mysqli_query($conn, $sql);
-          while($row = mysqli_fetch_assoc($result)){
-            echo '<div class="w3-third w3-container w3-margin-bottom"><a href="./php/youtubepage.php?id='.$row['id'].'"><img src="../img/'.($row['link_img']).'" alt="Norway" style="width:100%" class="w3-hover-opacity"></a><div class="w3-container w3-white"><p><b>'.($row['title']).'</b></p><p>'.($row['content']).'</p></div></div>';
-          }
+  $result = mysqli_query($conn, $sql);
+  while($row = mysqli_fetch_assoc($result)){
+    echo '
+    <div class="w3-third w3-container w3-margin-bottom"><a href="./php/youtubepage.php?id='.$row['id'].'">
+    <a href="./php/youtubepage.php?id='.$row['id'].'"><img src="./PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity">
+    </a>
+    <p>
+       <b>'.($row['title']).'</b>
+    </p>
+    </div>
+   
+    ';
+  }
       ?> 
     </div>
   </div>
