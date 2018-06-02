@@ -1,4 +1,4 @@
- <?php
+<?php
 require("../config/session.php");
 require("../config/config.php");
 require("../lib/db.php");

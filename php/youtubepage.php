@@ -25,29 +25,35 @@ if(isset($user_name)) {
 $update = '';
 $delete = '';
 if($user_type === '관리자') {
-    $update = $update."<a href='../editor/samples/update.php?id=".$row['id']."' class='w3-button w3-white w3-border w3-round-large'>관리자권한수정</a>";
-    $delete = $delete."<a href='../editor/samples/delete.php?id=".$row['id']."' class='w3-button w3-white w3-border w3-round-large'>관리자권한삭제</a>";  
+    $update = $update."<a href='../editor/samples/update.php?id=".$row['id']."' class='w3-button w3-white w3-border w3-round-large'>수정</a>";
+    $delete = $delete."<a href='../editor/samples/delete.php?id=".$row['id']."' class='w3-button w3-white w3-border w3-round-large'>삭제</a>";  
 } else {
     $update = $update.""; 
     $delete = $delete.""; 
 }
 
+// items 구매링크 아이템 있을때만 나오도록 설정 하는 코드
+$sql2 = "SELECT * FROM ck LEFT JOIN items ON ck.itemNum = items.id WHERE ck.id = '$id'";
+$result2 = mysqli_query($conn, $sql2);
+$row2 = mysqli_fetch_assoc($result2);
+
+$itemBuyLink = '';
+if(isset($row2['link'])) {
+  $itemBuyLink = $itemBuyLink."<a href='".$row2['link']."' class='w3-button w3-white w3-border w3-round-large'>아이탬구매링크</a>";
+} else {
+  $itemBuyLink = '';
+}
 ?>
 
 <!DOCTYPE html>
 <html>
-<title>동네컴퓨터학원</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<?php
+  // cdn 링크 모음
+  require("../config/cdn.php");
+?>
+
 <link rel="stylesheet" href="../css/fontello.css">
-
-<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
 <style>
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
 .w3-sidebar {
@@ -105,17 +111,17 @@ table, tr, td, th{
     &-5of6 { width: 83.33%; }
 }
 
-.readable-hidden {  
+/* .readable-hidden {  
     position: absolute !important;
     height: 1px;
     width: 1px;
     overflow: hidden;
     clip: rect(1px 1px 1px 1px); // for IE6, IE7
     clip: rect(1px, 1px, 1px, 1px);
-}
+} */
 
 /* 유튜브 반응형 */
-.youtubeWrap {
+/* .youtubeWrap {
   position: relative;
   width: 100%;
   padding-bottom: 56.25%;
@@ -124,7 +130,7 @@ table, tr, td, th{
   position: absolute;
   width: 100%;
   height: 100%;
-}
+} */
 
 </style>
 <body>
@@ -168,7 +174,7 @@ table, tr, td, th{
     <h6 class="w3-center">2018.04.29</h6>
     <div class="w3-twothird w3-container">
       <?php
-        echo '<img src="../PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity"><h3 id="video">설명</h3><p>'.($row['content']).'</p>';
+        echo '<img src="../editor/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity"><h3 id="video">설명</h3><p>'.($row['content']).'</p>';
       ?>
       
       <!-- 반응형 youtube 테두리  -->
@@ -179,8 +185,7 @@ table, tr, td, th{
       <h3>개요</h3>
       <p class="w3-border-bottom"></p>
       <p>리틀비츠 coding kit 을 활용해서 간단한 튜토리얼 프로젝트 진행</p>
-      <a href="https://www.amazon.com/littleBits-680-0010-Education-Code-Kit/dp/B06XCL5S6D/ref=sr_1_1_sspa?ie=UTF8&qid=1525961162&sr=8-1-spons&keywords=littlebits+code+kit&psc=1" class="w3-button w3-white w3-border w3-round-large">제품구매링크</a>
-      
+      <?=$itemBuyLink?>      
       <?=$update?>
       <?=$delete?>
       <!-- <ul>
@@ -207,11 +212,6 @@ table, tr, td, th{
       <div class="w3-border w3-padding-large w3-padding-24 w3-center">AD</div>
     </div>
   </div> -->
-
-
-  
-  
-  
     <div class="w3-twothird w3-container">
         <table class="number-table w3-center" style="margin-bottom: 5rem">
             <thead>
@@ -228,17 +228,15 @@ table, tr, td, th{
                     $sql = "SELECT * FROM ck LEFT JOIN items ON ck.itemNum = items.id WHERE ck.id = '$id'";
 
                     $result = mysqli_query($conn, $sql);
-
-                    $result = mysqli_query($conn, $sql);
                     while($row = mysqli_fetch_assoc($result)){
                     echo '
                     <tbody>
                         <tr>
                           <td>'.$row['platform'].'</td>
-                          <td>'.$row['name'].'</td>
-                          <td><img src="../'.$row['path'].'/'.$row['fileName'].'" style="width:8rem" alt=""></td>
+                          <td>'.$row['title'].'</td>
+                          <td><img src="../'.$row['path'].'/'.$row['fileName2'].'" style="width:8rem" alt=""></td>
                           <td>'.$row['price'].'$</td>
-                          <td><a href="'.$row['price'].'"><button class="w3-button w3-white w3-border"><i class="fa fa-bars"></i></button></a></td>
+                          <td><a href="'.$row['link'].'"><button class="w3-button w3-white w3-border"><i class="fa fa-bars"></i></button></a></td>
                     </tbody>
                     
                     ';

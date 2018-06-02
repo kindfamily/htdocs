@@ -37,7 +37,7 @@
           while($row = mysqli_fetch_assoc($result)){
             echo '
             <div class="w3-third w3-container w3-margin-bottom"><a href="./php/youtubepage.php?id='.$row['id'].'">
-            <a href="./php/youtubepage.php?id='.$row['id'].'"><img src="./PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity">
+            <a href="./php/youtubepage.php?id='.$row['id'].'"><img src="./editor/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity">
             </a>
             <p>
                <b>'.($row['title']).'</b>
@@ -58,7 +58,7 @@
       while($row = mysqli_fetch_assoc($result)){
         echo '
         <div class="w3-third w3-container w3-margin-bottom"><a href="./php/youtubepage.php?id='.$row['id'].'">
-        <a href="./php/youtubepage.php?id='.$row['id'].'"><img src="./PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity">
+        <a href="./php/youtubepage.php?id='.$row['id'].'"><img src="./editor/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity">
         </a>
         <p>
            <b>'.($row['title']).'</b>
@@ -78,7 +78,7 @@
   while($row = mysqli_fetch_assoc($result)){
     echo '
     <div class="w3-third w3-container w3-margin-bottom"><a href="./php/youtubepage.php?id='.$row['id'].'">
-    <a href="./php/youtubepage.php?id='.$row['id'].'"><img src="./PHPMySqlFileUpload/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity">
+    <a href="./php/youtubepage.php?id='.$row['id'].'"><img src="./editor/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity">
     </a>
     <p>
        <b>'.($row['title']).'</b>

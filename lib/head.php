@@ -1,39 +1,9 @@
 <?php
+require("./config/session.php");
 require("./config/config.php");
 require("./lib/db.php");
+
 $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
-
-session_start();
-
-$timeout = 1 ; // Set timeout minutes 
-$logout_redirect_url = "index.php" ; // Set logout URL 
-$timeout = $timeout * 3600 ; // Converts minutes to seconds 
-if (isset( $_SESSION [ 'start_time' ])) { 
-  $elapsed_time = time () - $_SESSION [ 'start_time' ]; 
-  if ( $elapsed_time >= $timeout ) { 
-    session_destroy (); 
-    header ( "Location: $logout_redirect_url" ); 
-  } 
-} 
-$_SESSION [ 'start_time' ] = time (); 
-
-
-if(isset($_SESSION['user_id']))
-{
-    $user_id = $_SESSION['user_id'];
-}
-
-if(isset($_SESSION['user_name']))
-{
-   $user_name = $_SESSION['user_name'];
-}
-
-if(isset($_SESSION['user_type']))
-{
-    $user_type = $_SESSION['user_type'];
-}
-
-
 
 $nav = '';
 if(isset($user_name)) {
@@ -49,12 +19,10 @@ if(isset($user_name)) {
 
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- (1) LoginWithNaverId Javscript SDK -->
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
-
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans:400" rel="stylesheet">

@@ -24,6 +24,43 @@
 
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<style>
+            ul{
+                list-style:none;
+            }
+        </style>  
+		<script>
+		// 재료 사진 조회 
+            $(document).ready(function () {
+                $("#keyword").keyup(function()   {
+                    var keyword = $(this).val();
+                    var dataString = 'searchword='+ keyword;                
+                                
+                    if(keyword=='') { 
+                         
+                         $("#display").hide();
+
+                    } else {    
+                        $.ajax({
+                        type: "POST",
+                        url: "itemssuggestions.php",
+                        data: dataString,
+                        cache: false,
+                        success: function(html) {               
+                            $("#display").html(html).show(); 
+                            
+                            $("#key").click(function(){
+                                $("#display").hide();
+                                $("#play").html(html).show(); 
+                            });
+                          
+                            }
+                        });
+                    } return false;                             
+                });     
+            }); 
+     
+        </script>
 	</header>
 	<body>
 		<div class="container">			
@@ -56,8 +93,24 @@
 							이름: <input type="text" name="file_name[]"><input type="file" id="exampleInputFile" name="files[]" multiple="multiple">
 							</p>
 						</div>	 -->
+						<div class="input-group">
+							<input name="keyword" id="keyword" type="text" class="form-control">
+							<span class="input-group-btn">
+								<button class="btn btn-danger" type="button" onclick="javascript:checkSearch('keyword');">검색</button>
+							</span>
+						</div>
+						<div id="display"></div>
+						<div id="play"></div>
+
+						
 						<button type="submit" class="btn btn-primary" name="btnSubmit" >전송</button>
 						<!-- <a href="view.php" class="btn btn-info">Show Uploaded Files</a> -->
+
+						
+								
+				
+								
+		
 					</form>
 					<br/>
 					<!-- <label for="Progressbar">Progress:</label>
