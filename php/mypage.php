@@ -183,12 +183,26 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     ?>
     <h5>프로젝트 리스트(<?=$num_rows2?>)</h5>
     <a href="./community.php" style="text-decoration:none"><small>전체보기</small></a>
-    <a href="../editor/samples/create.php" style="text-decoration:none"><small>생성하기</small></a>
+    <a href="../editor/samples/create_admin.php" style="text-decoration:none"><small>생성하기</small></a>
     <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+
+  
      <?php
+      
+
 
       while($row = mysqli_fetch_assoc($result)){
-        echo '<tr><td>'.($row['title']).'</td></tr>';
+        $update = '';
+        $delete = '';
+        if($user_type === '관리자') {
+            $update = $update."<a href='../editor/samples/update_admin.php?id=".$row['id']."' class='w3-button w3-white w3-border w3-round-large'>수정</a>";
+            $delete = $delete."<a href='../editor/samples/delete_admin.php?id=".$row['id']."' class='w3-button w3-white w3-border w3-round-large'>삭제</a>";  
+        } else {
+            $update = $update.""; 
+            $delete = $delete.""; 
+        }
+
+        echo '<tr><td>'.($row['title']).'</td><td>'.$update.'</td><td>'.$delete.'</td></tr>';
       }
     ?>
     </table><br>

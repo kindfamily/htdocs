@@ -134,16 +134,15 @@ table, tr, td, th{
 
 </style>
 <body>
-
 <!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
     <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="./community.php" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white"></a>
     <a href="../php/community.php" class="w3-bar-item w3-button w3-hide-small w3-hover-white">전체보기</a>
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">스토리</a>
+    <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">스토리</a> -->
     <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">소스코드</a> -->
-    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">재료</a>
+    <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">재료</a> -->
     <span class="w3-bar-item w3-right w3-hide-small"><?=$user_info?></span>
     <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Clients</a> -->
     <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Partners</a> -->
@@ -169,9 +168,10 @@ table, tr, td, th{
 <!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
 <div class="w3-main" style="margin-left:200px; margin-right: 200px;">
   <div class="w3-row w3-padding-64">
-    <h2 class="w3-center w3-border-bottom"><?=$row['title']?>(<?=$row['id']?>)</h2>
-    <h6 class="w3-center">jungwonbong</h6>
-    <h6 class="w3-center">2018.04.29</h6>
+    <h2 class="w3-center w3-border-bottom"><?=$row['title']?></h2>
+    <h6 class="w3-center">정원봉</h6>
+    <h6 class="w3-center"><?=$row['created']?></h6>
+    <h6 class="w3-center">글번호:<?=$row['id']?></h6>
     <div class="w3-twothird w3-container">
       <?php
         echo '<img src="../editor/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity"><h3 id="video">설명</h3><p>'.($row['content']).'</p>';

@@ -17,7 +17,7 @@ $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dnam
 		$fileDestination = 'Upload/'.$titleImgName;
         move_uploaded_file($titleImgTmpName, $fileDestination);
 
-		$sql = "INSERT INTO ck(title, content, title_img_name, itemNum, created ) VALUES ('$title','$editor', '$titleImgName', '$item_num', NOW())";
+		$sql = "INSERT INTO ck(title, content, title_img_name, itemNum ) VALUES ('$title','$editor', '$titleImgName', '$item_num')";
 
 		$result = mysqli_query($conn, $sql);
 
@@ -147,4 +147,4 @@ $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dnam
 		}		
 	}
 ?>
-<meta http-equiv='refresh' content='0;url=../../php/community.php'>
+<meta http-equiv='refresh' content='0;url=../../php/mypage.php'>

@@ -30,7 +30,7 @@ $title = $_POST['title'];
 			exit;
 		}
 
-		$sql = "UPDATE ck SET title='$title', content='$editor', title_img_name='$titleImgName', created=NOW() WHERE id='$id';";
+		$sql = "UPDATE ck SET title='$title', content='$editor', title_img_name='$titleImgName' WHERE id='$id';";
 		$result = mysqli_query($conn, $sql);
 
 		if($result === false){
@@ -117,4 +117,4 @@ $title = $_POST['title'];
 		}		
 	}
 ?>
-<meta http-equiv='refresh' content='0;url=../../php/community.php'>
+<meta http-equiv='refresh' content='0;url=../../php/mypage.php'>

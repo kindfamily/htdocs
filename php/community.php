@@ -21,13 +21,6 @@ if(isset($user_name)) {
     $user_info = $user_info.""; 
 }
 
-$button_create = '';
-if($user_type === '관리자') {
-    $button_create = $button_create."<a href='../editor/samples/create.php' class='w3-bar-item w3-padding'><i class='fa fa-plus-square' style='font-size:3rem;color:red'></i></a>";
-} else {
-    $button_create = $button_create.""; 
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -82,16 +75,17 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <a href="../index.php"><img src="../img/avatar3.png" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
     <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
     <div class="w3-container">
-    <h1><b>프로젝트</b></h1>
-    <span>Welcome, <strong><?=$user_info?></strong></span><br>
+    <h1><b>프로젝트</b></h1><h2><?=$user_info?><br></h2>
+    
     <div class="w3-section w3-bottombar w3-padding-16">
+    
       <span class="w3-margin-right">Filter:</span> 
       <button class="w3-button w3-black"><i class="fa fa-sun-o fa-fw"></i> 전체</button>
       <!-- <button class="w3-button w3-white"><i class="fa fa-fighter-jet fa-fw"></i> 최신</button>
       <button class="w3-button w3-white w3-hide-small"><i class="fa fa-heart fa-fw"></i> 인기</button>
       <button class="w3-button w3-white w3-hide-small"><i class="fa fa-youtube-play fa-fw"></i> 연재</button>
       <button class="w3-button w3-white w3-hide-small"><i class="fa fa-users fa-fw"></i> 수준별</button> -->
-      <?=$button_create?>
+    
       <!-- <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>새로만들기</button> -->
     </div>
   </header>

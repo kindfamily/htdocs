@@ -21,6 +21,38 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="../css/fontello.css">
+		<script>
+		// 재료 사진 조회 
+            $(document).ready(function () {
+                $("#keyword").keyup(function()   {
+                    var keyword = $(this).val();
+                    var dataString = 'searchword='+ keyword;                
+                                
+                    if(keyword=='') { 
+                         
+                         $("#display").hide();
+
+                    } else {    
+                        $.ajax({
+                        type: "POST",
+                        url: "itemssuggestions.php",
+                        data: dataString,
+                        cache: false,
+                        success: function(html) {               
+                            $("#display").html(html).show(); 
+                            
+                            $("#key").click(function(){
+                                $("#display").hide();
+                                $("#play").html(html).show(); 
+                            });
+                          
+                            }
+                        });
+                    } return false;                             
+                });     
+            }); 
+     
+        </script>
 
 		<!-- Bootstrap -->
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -48,8 +80,8 @@
 							$row = mysqli_fetch_array($result);
 
 							if($result === false){
-									echo mysqli_error($conn);
-									exit;
+								echo mysqli_error($conn);
+								exit;
 							}
 							echo $id;
 						?>	
@@ -63,7 +95,7 @@
 						<p>
 						<h3>메인사진</h3>	
 							<input type="file" name="maintitle">
-							<img src="../../PHPMySqlFileUpload/samples/Upload/<?=$row['title_img_name']?>" style="width:20rem"alt="">	
+							<img src="../../editor/samples/Upload/<?=$row['title_img_name']?>" style="width:20rem"alt="">	
 						</p>
 						<p>
 							<textarea class="ckeditor" name="editor"><?=$row['content']?></textarea>	
@@ -78,7 +110,15 @@
 							<input type="file" id="exampleInputFile" name="files[]" multiple="multiple">
 							</p> -->
 							<!-- <p class="help-block"><span class="label label-info">Note:</span> Please, Select the only images (.jpg, .jpeg, .png, .gif) to upload with the size of 100KB only.</p> -->
-						</div>	
+						</div>
+						<div class="input-group">
+							<input name="keyword" id="keyword" type="text" class="form-control">
+							<span class="input-group-btn">
+								<button class="btn btn-danger" type="button" onclick="javascript:checkSearch('keyword');">검색</button>
+							</span>
+						</div>
+						<div id="display"></div>
+						<div id="play"></div>	
 
 						
 						<button type="submit" class="btn btn-primary" name="btnSubmit" >전송</button>

@@ -70,7 +70,7 @@
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<form method="post" enctype="multipart/form-data" name="formUploadFile" id="uploadForm" action="upload.php">
+					<form method="post" enctype="multipart/form-data" name="formUploadFile" id="uploadForm" action="upload_admin.php">
 								
 						<p>
 						<h3>제목</h3>
@@ -102,9 +102,15 @@
 						<div id="display"></div>
 						<div id="play"></div>
 
+						
 						<button type="submit" class="btn btn-primary" name="btnSubmit" >전송</button>
 						<!-- <a href="view.php" class="btn btn-info">Show Uploaded Files</a> -->
 
+						
+								
+				
+								
+		
 					</form>
 					<br/>
 					<!-- <label for="Progressbar">Progress:</label>
