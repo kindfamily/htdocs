@@ -9,4 +9,6 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.uiColor = '#AADC6E';
 	config.height = 700;        // 500 pixels high.
 	config.height = '70rem';     // CSS unit (em).
+	config.removePlugins = 'image,imageresize,uploadimage,easyimage,CustomimageUploader';
+	
 };

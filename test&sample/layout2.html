@@ -1,0 +1,223 @@
+<!doctype>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        div{
+            border: 0.1px solid grey;
+            text-align: center;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+        }
+        .header{
+            border-bottom:1px solid gray;
+            padding-left:20px;
+        }
+        .content{
+            display:flex;
+            flex-grow: 1;
+        }   
+        
+        .item{
+            padding: 10;
+            /* border: 1px solid black; */
+            flex-grow: 1;
+            height: 800px;
+           
+        }
+
+        .inner{
+            display: flex;
+            flex-direction:column;
+            height: 800px;
+        }
+
+        .item-inner-left:nth-child(1){
+           flex-basis: 30px;
+        }
+        .item-inner-left:nth-child(2){
+           flex-basis: 600px;
+        }
+        .item-inner-left:nth-child(3){
+           flex-basis: 170px;
+        }
+
+        .item-inner-right:nth-child(1){
+           flex-basis: 750px;
+        }
+        .item-inner-right:nth-child(2){
+           flex-basis: 50px;
+        }
+
+
+        .dot {
+            height: 20px;
+            width: 20px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            padding: 5px;
+            margin: 10px;
+        }
+        .dot-now {
+            height: 20px;
+            width: 20px;
+            background-color:dodgerblue;
+            border-radius: 50%;
+            display: inline-block;
+            padding: 5px;
+            margin: 10px;
+        }
+
+
+        /* slide button */
+         #mySidenav a {
+            position: absolute;
+            right: -50px;
+            transition: 0.3s;
+            padding: 15px;
+            width: 80px;
+            height: 100px;
+            text-decoration: none;
+            font-size: 45px;
+            color: burlywood;
+            border-radius: 5px 0 0 5px;
+        }
+
+        #mySidenav a:hover {
+            right: 0;
+        }
+
+        #about {
+            top: 70px;
+            background-color: #4CAF50;
+        }
+
+        /* #blog {
+            top: 80px;
+            background-color: #2196F3;
+        }
+
+        #projects {
+            top: 140px;
+            background-color: #f44336;
+        }
+
+        #contact {
+            top: 200px;
+            background-color: #555
+        } */
+
+
+        /* slide */
+        .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        }
+
+        .switch input {display:none;}
+
+        .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+
+        .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+        }
+
+        input:checked + .slider {
+        background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+        border-radius: 34px;
+        }
+
+        .slider.round:before {
+        border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="#" id="about" class="w3-opacity"> < </a>
+        <!-- <a href="#" id="blog">Blog</a>
+        <a href="#" id="projects">Projects</a>
+        <a href="#" id="contact">Contact</a> -->
+    </div>
+              
+    <div class="container">
+        <div class="header">
+            <span class="dot"></span>
+            <span class="dot-now"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+
+        </div>
+        <section class="content">
+            <div class="item inner">
+                <div class="item-inner-left">
+                    <label class="switch w3-left w3-margin">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+               <div class="item-inner-left">editor( block<->typing )</div>
+               <div class="item-inner-left">console</div>
+            </div>
+            <div class="item inner">
+                <div class="item-inner-right">liveView</div>
+                <div class="item-inner-right"><button class="w3-amber w3-right w3-padding w3-margin w3-round">실행</button></div>
+                
+            </div>
+        </section>
+        
+    </div>
+</body>
+</html>

@@ -62,6 +62,8 @@ if(isset($user_name)) {
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
@@ -81,6 +83,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
     <div class="w3-col s8 w3-bar">
       <span>Welcome, <strong><?=$user_info?></strong></span><br>
+      <button class="w3-button w3-white w3-border w3-round">edit</button>
       <!-- <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a> -->
@@ -89,6 +92,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <hr>
   <div class="w3-container">
     <h5>Dashboard</h5>
+   
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
@@ -122,7 +126,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
         <div class="w3-right">
           <h3>
-            <?=$num_rows?>
+            <input type="hidden" class="userNum" name="custId" value="<?=$num_rows?>">
+            <div id="userNum">0</div>
           </h3>
         </div>
         <div class="w3-clear"></div>
@@ -130,28 +135,45 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       </div>
     </div>
    
-   
+    <?php
+      $sql2 = "SELECT * FROM ck";
+      $result2 = mysqli_query($conn, $sql2);
+      $num_rows2 = mysqli_num_rows($result2);
+    ?>
     <div class="w3-quarter">
       <div class="w3-container w3-red w3-padding-16">
         <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>0</h3>
+          
+          <h3>
+            <input type="hidden" class="projectNum" name="custId" value="<?=$num_rows2?>">
+            <div id="projectNum">0</div>
+          </h3>
         </div>
+        
         <div class="w3-clear"></div>
-        <h4>Messages</h4>
+        <h4>Project</h4>
       </div>
     </div>
+    <?php
+      $sql3 = "SELECT * FROM items";
+      $result3 = mysqli_query($conn, $sql3);
+      $num_rows3 = mysqli_num_rows($result3);
+    ?>
     <div class="w3-quarter">
       <div class="w3-container w3-blue w3-padding-16">
         <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>0</h3>
+          <h3>
+            <input type="hidden" class="itemsNum" name="custId" value="<?=$num_rows3?>">
+            <div id="itemsNum">0</div>
+          </h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Views</h4>
+        <h4>items</h4>
       </div>
     </div>
-    <div class="w3-quarter">
+    <!-- <div class="w3-quarter">
       <div class="w3-container w3-teal w3-padding-16">
         <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
         <div class="w3-right">
@@ -160,7 +182,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <div class="w3-clear"></div>
         <h4>Shares</h4>
       </div>
-    </div>
+    </div> -->
     
   </div>
 
@@ -176,11 +198,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       }
     ?>
     </table><br>
-    <?php
-      $sql = "SELECT * FROM ck";
-      $result = mysqli_query($conn, $sql);
-      $num_rows2 = mysqli_num_rows($result);
-    ?>
+    
     <h5>프로젝트 리스트(<?=$num_rows2?>)</h5>
     <a href="./community.php" style="text-decoration:none"><small>전체보기</small></a>
     <a href="../editor/samples/create_admin.php" style="text-decoration:none"><small>생성하기</small></a>
@@ -191,7 +209,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       
 
 
-      while($row = mysqli_fetch_assoc($result)){
+      while($row = mysqli_fetch_assoc($result2)){
         $update = '';
         $delete = '';
         if($user_type === '관리자') {
@@ -202,7 +220,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
             $delete = $delete.""; 
         }
 
-        echo '<tr><td>'.($row['title']).'</td><td>'.$update.'</td><td>'.$delete.'</td></tr>';
+        echo '<tr><td><a href="./youtubepage.php?id='.$row['id'].'">'.($row['title']).'</a></td><td>'.$update.'</td><td>'.$delete.'</td></tr>';
       }
     ?>
     </table><br>
@@ -334,29 +352,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div> -->
   </div>
   <br>
-  <div class="w3-container w3-dark-grey w3-padding-32">
-    <div class="w3-row">
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-green">Demographic</h5>
-        <p>Language</p>
-        <p>Country</p>
-        <p>City</p>
-      </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-red">System</h5>
-        <p>Browser</p>
-        <p>OS</p>
-        <p>More</p>
-      </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-orange">Target</h5>
-        <p>Users</p>
-        <p>Active</p>
-        <p>Geo</p>
-        <p>Interests</p>
-      </div>
-    </div>
-  </div>
+
+  <?php require("../lib/footer.php"); ?>
 
   <!-- Footer -->
   <!-- <footer class="w3-container w3-padding-16 w3-light-grey">
@@ -366,6 +363,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <!-- End page content -->
 </div>
+
+<script src="http://code.jquery.com/jquery-1.7.0.min.js"></script>
+<script src="../js/jquery.color.min.js"></script>
+<script src="../js/jquery.animateNumber.min.js"></script>
 
 <script>
 // Get the Sidebar
@@ -390,6 +391,17 @@ function w3_close() {
     mySidebar.style.display = "none";
     overlayBg.style.display = "none";
 }
+</script>
+
+ <script>
+// 숫자 에니메이션
+  var num = $('.userNum').val();
+  var num2 = $('.projectNum').val();
+  var num3 = $('.itemsNum').val();
+  $('#userNum').animateNumber({ number: num });
+  $('#projectNum').animateNumber({ number: num2 });
+  $('#itemsNum').animateNumber({ number: num3 });
+
 </script>
 
 </body>

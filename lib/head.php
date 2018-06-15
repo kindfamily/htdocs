@@ -28,6 +28,9 @@ if(isset($user_name)) {
 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans:400" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./css/style.css">
+
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+
 <style>
 /* scroll nav  */
 body {

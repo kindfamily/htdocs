@@ -4,8 +4,7 @@ require("../config/config.php");
 require("../lib/db.php");
 $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dname"]);
 
-$sql = "SELECT * FROM ck LIMIT 30";
-
+$sql = "SELECT * FROM items LEFT JOIN ck ON items.id = ck.itemNum LIMIT 30";
 $result = mysqli_query($conn, $sql);
 // if(!isset($_POST['user_id']) || !isset($_POST['user_pw'])) exit;
 
@@ -34,6 +33,54 @@ if(isset($user_name)) {
 
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+/* slide */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
 </style>
 <body class="w3-light-grey w3-content" style="max-width:1600px">
 
@@ -77,27 +124,46 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <div class="w3-container">
     <h1><b>프로젝트</b></h1><h2><?=$user_info?><br></h2>
     
-    <div class="w3-section w3-bottombar w3-padding-16">
-    
+    <div class="w3-section">
+      <label class="switch w3-left w3-margin-bottom">
+          <input type="checkbox">
+          <span class="slider round"></span>
+      </label>
+    </div>
+      <!-- <div class="w3-section w3-bottombar w3-padding-16">
       <span class="w3-margin-right">Filter:</span> 
       <button class="w3-button w3-black"><i class="fa fa-sun-o fa-fw"></i> 전체</button>
-      <!-- <button class="w3-button w3-white"><i class="fa fa-fighter-jet fa-fw"></i> 최신</button>
+      <button class="w3-button w3-white"><i class="fa fa-fighter-jet fa-fw"></i> 유망플렛폼</button> 
       <button class="w3-button w3-white w3-hide-small"><i class="fa fa-heart fa-fw"></i> 인기</button>
       <button class="w3-button w3-white w3-hide-small"><i class="fa fa-youtube-play fa-fw"></i> 연재</button>
-      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-users fa-fw"></i> 수준별</button> -->
+      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-users fa-fw"></i> 수준별</button> 
     
-      <!-- <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>새로만들기</button> -->
-    </div>
+      <button class="w3-button w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>새로만들기</button>
+      </div> -->
   </header>
+
+        
+
+        
   <!-- Photo Grid-->
   <div class="w3-row-padding">
+      <div class="w3-display-container w3-quarter w3-container w3-margin-bottom" style="height:200px">
+        <div class="w3-display-topright w3-teal w3-padding w3-round">platform</div>
+          <a href="http://thekdc.co.kr/">
+            <img src="../img/platform/littlebits.png" alt="Norway" style="width:100%;" class="">
+          </a>
+        <div class="w3-container w3-white">
+          <p>코리아 드론콥터</p>
+        </div>
+      </div>
   <?php
     while($row = mysqli_fetch_assoc($result)){
       echo '
-      <div class="w3-third w3-container w3-margin-bottom">
-        <a href="youtubepage.php?id='.$row['id'].'">
-          <img src="../editor/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="w3-hover-opacity">
-        </a>
+      <div class="w3-display-container w3-quarter w3-container w3-margin-bottom">
+        <div class="w3-display-topright w3-amber w3-padding w3-round">'.$row['platform'].'</div>
+          <a href="youtubepage.php?id='.$row['id'].'">
+            <img src="../editor/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="">
+          </a>
         <div class="w3-container w3-white">
           <p>'.($row['title']).'</p>
         </div>
@@ -105,6 +171,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     }
   ?>
 
+    <div class="w3-display-container w3-quarter w3-container w3-margin-bottom">
+        <div class="w3-display-topright w3-teal w3-padding w3-round">platform</div>
+          <a href="http://thekdc.co.kr/">
+            <img src="../img/platform/koreadrone.jpg" alt="Norway" style="width:100%" class="">
+          </a>
+        <div class="w3-container w3-white">
+          <p>코리아 드론콥터</p>
+        </div>
+      </div>
   </div>
 <!-- End page content -->
 </div>

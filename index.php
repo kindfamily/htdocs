@@ -5,8 +5,38 @@
 <!-- Header with full-height image -->
   <div class="w3-container w3-padding-64 w3-center">
     <h1 id="title">배우고, 나누는</h1>
+
+
+
+
+
+
+
+
     <div style="width: 100%; height:1px; background-color: black;"></div>
-    <h1 class="w3-wide w3-padding-16 w3-large" style="width:100%">플랫폼 커뮤니티</h1>
+    
+    <?php
+      $sql = "SELECT * FROM ck";
+      $result = mysqli_query($conn, $sql);
+      $num_rows = mysqli_num_rows($result);
+
+      $sql2 = "SELECT * FROM items";
+      $result2 = mysqli_query($conn, $sql2);
+      $num_rows2 = mysqli_num_rows($result2);
+    ?>
+    
+    
+    
+    
+    
+    <h1 class="w3-wide w3-padding-16 w3-large" style="width:100%; font-family: 'Amatic SC', cursive;">
+            <input type="hidden" class="projectNum" name="custId" value="<?=$num_rows?>">
+            <input type="hidden" class="itemsNum" name="custId" value="<?=$num_rows2?>">
+            <input type="hidden" class="platformNum" name="custId" value="1">
+            <span id="projectNum" style="font-size: 2rem; font-weight: bold;">0</span><span> project</span> 
+            <span id="itemsNum" style="font-size: 2rem; font-weight: bold;">0</span><span> item</span> 
+            <span id="platformNum" style="font-size: 2rem; font-weight: bold;">0</span><span> platform</span> 
+    </h1>
     <a href="../php/community.php" class=" w3-round w3-button w3-black w3-padding-large w3-medium w3-opacity w3-hover-opacity-off" style="width:50%;">전체보기</a>
     <div class="w3-padding-large w3-padding-64">
       <img class="w3-opacity" src="./img/platform/apple.jpeg" alt="Cherries" style="width:4rem">
@@ -109,6 +139,10 @@
   </div>
 </footer>
   -->
+<script src="http://code.jquery.com/jquery-1.7.0.min.js"></script>
+<script src="../js/jquery.color.min.js"></script>
+<script src="../js/jquery.animateNumber.min.js"></script>
+
 <!-- Add Google Maps -->
 <script>
 function myMap()
@@ -191,6 +225,17 @@ function openCity(evt, cityName) {
 To use this code on your website, get a free API key from Google.
 Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
 -->
+<script>
+// 숫자 에니메이션
+  var num = $('.projectNum').val();
+  var num2 = $('.itemsNum').val();
+  var num3 = $('.platformNum').val();
+  console.log(num);
+  $('#projectNum').animateNumber({ number: num });
+  $('#itemsNum').animateNumber({ number: num2 });
+  $('#platformNum').animateNumber({ number: num3 });
+
+</script>
 
 </body>
 </html>

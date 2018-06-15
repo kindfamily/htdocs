@@ -121,7 +121,7 @@ table, tr, td, th{
 } */
 
 /* 유튜브 반응형 */
-/* .youtubeWrap {
+.youtubeWrap {
   position: relative;
   width: 100%;
   padding-bottom: 56.25%;
@@ -130,7 +130,48 @@ table, tr, td, th{
   position: absolute;
   width: 100%;
   height: 100%;
-} */
+}
+
+
+.btn {
+    background-color: #2196F3;
+    color: white;
+    /* padding: 5px; */
+    font-size: 10px;
+    border: none;
+    outline: none;
+}
+
+.dropdown {
+    position: absolute;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    z-index: 1;
+    left: -140px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 3px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.btn:hover, .dropdown:hover .btn {
+    background-color: #0b7dda;
+}
 
 </style>
 <body>
@@ -230,15 +271,24 @@ table, tr, td, th{
                     $result = mysqli_query($conn, $sql);
                     while($row = mysqli_fetch_assoc($result)){
                     echo '
-                    <tbody>
-                        <tr>
-                          <td>'.$row['platform'].'</td>
-                          <td>'.$row['title'].'</td>
-                          <td><img src="../'.$row['path'].'/'.$row['fileName2'].'" style="width:8rem" alt=""></td>
-                          <td>'.$row['price'].'$</td>
-                          <td><a href="'.$row['link'].'"><button class="w3-button w3-white w3-border"><i class="fa fa-bars"></i></button></a></td>
-                    </tbody>
-                    
+                      <tbody>
+                          <tr>
+                            <td>'.$row['platform'].'</td>
+                            <td>'.$row['title'].'</td>
+                            <td><img src="../'.$row['path'].'/'.$row['fileName2'].'" style="width:8rem" alt=""></td>
+                            <td>'.$row['price'].'$</td>
+                            <td>
+                            <div class="dropdown">
+                              <button class="btn" style="border-left:1px solid #0d8bf2">
+                                <i class="fa fa-cart-plus"></i>
+                              </button>
+                              <div class="dropdown-content">
+                                <a href="'.$row['link'].'"><i class="fa fa-info-circle"></i>제작사</a>
+                                <a href="./cart.php?id='.$row['id'].'"><i class="fa fa-cart-plus"></i>장바구니</a>
+                              </div>
+                            </div>
+                            </td>
+                      </tbody>
                     ';
                     }
                   ?> 
@@ -261,30 +311,7 @@ table, tr, td, th{
     </div>
 </div>
 
-<footer id="myFooter">
-<div class="w3-container w3-dark-grey w3-padding-32">
-    <div class="w3-row">
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-green">Demographic</h5>
-        <p>Language</p>
-        <p>Country</p>
-        <p>City</p>
-      </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-red">System</h5>
-        <p>Browser</p>
-        <p>OS</p>
-        <p>More</p>
-      </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-orange">Target</h5>
-        <p>Users</p>
-        <p>Active</p>
-        <p>Geo</p>
-        <p>Interests</p>
-      </div>
-    </div>
-</footer>
+<?php require("../lib/footer.php"); ?>
 <script>
 
 $(document).ready(function(){
