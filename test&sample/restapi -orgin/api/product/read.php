@@ -33,7 +33,7 @@ if($num>0){
         // this will make $row['name'] to
         // just $name only
         extract($row);
-       
+        
         $product_item=array(
             "id" => $id,
             "name" => $name,
@@ -45,10 +45,8 @@ if($num>0){
 
         array_push($products_arr["records"], $product_item);
     }
-    
+ 
     echo json_encode($products_arr);
-
-   
 }
  
 else{

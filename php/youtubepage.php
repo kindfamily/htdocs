@@ -264,34 +264,34 @@ table, tr, td, th{
                     <th scope="col">링크</th>
                 </tr>
             </thead>
-                  <?php
+            <?php
 
-                    $sql = "SELECT * FROM ck LEFT JOIN items ON ck.itemNum = items.id WHERE ck.id = '$id'";
+            $sql = "SELECT items.platform, items.title, items.path, items.fileName2, items.price, items.link, ck.id  FROM ck LEFT JOIN items ON ck.itemNum = items.id WHERE ck.id = '$id'";
 
-                    $result = mysqli_query($conn, $sql);
-                    while($row = mysqli_fetch_assoc($result)){
-                    echo '
-                      <tbody>
-                          <tr>
-                            <td>'.$row['platform'].'</td>
-                            <td>'.$row['title'].'</td>
-                            <td><img src="../'.$row['path'].'/'.$row['fileName2'].'" style="width:8rem" alt=""></td>
-                            <td>'.$row['price'].'$</td>
-                            <td>
-                            <div class="dropdown">
-                              <button class="btn" style="border-left:1px solid #0d8bf2">
-                                <i class="fa fa-cart-plus"></i>
-                              </button>
-                              <div class="dropdown-content">
-                                <a href="'.$row['link'].'"><i class="fa fa-info-circle"></i>제작사</a>
-                                <a href="./cart.php?id='.$row['id'].'"><i class="fa fa-cart-plus"></i>장바구니</a>
-                              </div>
-                            </div>
-                            </td>
-                      </tbody>
-                    ';
-                    }
-                  ?> 
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)){
+            echo '
+                <tbody>
+                    <tr>
+                    <td>'.$row['platform'].'</td>
+                    <td>'.$row['title'].'</td>
+                    <td><img src="../'.$row['path'].'/'.$row['fileName2'].'" style="width:8rem" alt=""></td>
+                    <td>'.$row['price'].'$</td>
+                    <td>
+                    <div class="dropdown">
+                        <button class="btn" style="border-left:1px solid #0d8bf2">
+                        <i class="fa fa-cart-plus"></i>
+                        </button>
+                        <div class="dropdown-content">
+                        <a href="'.$row['link'].'"><i class="fa fa-info-circle"></i>제작사</a>
+                        <a href="./orderinfo.php?id='.$row['id'].'"><i class="fa fa-cart-plus"></i>장바구니</a>
+                        </div>
+                    </div>
+                    </td>
+                </tbody>
+            ';
+            }
+            ?> 
         </table>
     </div>
     <!-- <div class="w3-third w3-container">

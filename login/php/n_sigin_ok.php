@@ -20,9 +20,6 @@ $conn = db_init($config["host"], $config["duser"], $config["dpw"], $config["dnam
 // echo $uqid;
 // exit;
  
-if(!$conn){
-    echo "not connect DB";
-}
 
 $sql = "INSERT INTO user_n(uniqid) VALUES('{$_POST['id']}')";
 
@@ -34,8 +31,6 @@ $result = mysqli_query($conn,$sql);
 if($result === false){
     echo mysqli_error($conn);
 }
-
-
 
 ?>
 <!-- <meta http-equiv='refresh' content='0;url=index.php'> -->

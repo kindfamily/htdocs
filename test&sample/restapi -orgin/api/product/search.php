@@ -14,8 +14,11 @@ $db = $database->getConnection();
 // initialize object
 $product = new Product($db);
  
+// get keywords
+$keywords=isset($_GET["s"]) ? $_GET["s"] : "";
+ 
 // query products
-$stmt = $product->read();
+$stmt = $product->search($keywords);
 $num = $stmt->rowCount();
  
 // check if more than 0 record found
@@ -33,7 +36,7 @@ if($num>0){
         // this will make $row['name'] to
         // just $name only
         extract($row);
-       
+ 
         $product_item=array(
             "id" => $id,
             "name" => $name,
@@ -42,13 +45,11 @@ if($num>0){
             "category_id" => $category_id,
             "category_name" => $category_name
         );
-
+ 
         array_push($products_arr["records"], $product_item);
     }
-    
+ 
     echo json_encode($products_arr);
-
-   
 }
  
 else{
@@ -56,6 +57,4 @@ else{
         array("message" => "No products found.")
     );
 }
-
-
 ?>

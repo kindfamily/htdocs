@@ -159,7 +159,7 @@
 	$(document).ready(function(){
 		
 		$('#id').blur(function(){    
-		
+
 				$.ajax({ // ajax실행부분
 					type: "post",
 					url : "./php/checkid.php",
@@ -169,6 +169,7 @@
 					success : function s(a){ $('#idch').html(a); },
 					error : function error(){ alert('시스템 문제발생');}
 				});
+
 		});
 		
 	});

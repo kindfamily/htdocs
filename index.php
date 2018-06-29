@@ -1,17 +1,10 @@
 <?php
-    include_once './lib/head.php';
+    include_once './lib/head_index.php';
 ?>
 
 <!-- Header with full-height image -->
   <div class="w3-container w3-padding-64 w3-center">
     <h1 id="title">배우고, 나누는</h1>
-
-
-
-
-
-
-
 
     <div style="width: 100%; height:1px; background-color: black;"></div>
     
@@ -24,8 +17,6 @@
       $result2 = mysqli_query($conn, $sql2);
       $num_rows2 = mysqli_num_rows($result2);
     ?>
-    
-    
     
     
     
