@@ -10,11 +10,11 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>PHP Upload File With Progressbar</title>
+		<title>동네컴퓨터학원</title>
 		<script src="../ckeditor.js"></script>
 		<script src="js/sample.js"></script>
 		<link rel="stylesheet" href="css/samples.css">
-		<link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css"><title>동네컴퓨터학원</title>
+		<link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -61,18 +61,11 @@
 		<div class="container">			
 			<div class="page-header">
 			<a href="../../index.php"></a>
-				<h1>새로운 프로젝트 생성 </h1>
-				<small>문제사항 </small> 
-				<ul>
-				<li>본문에 사진 파일 포함 금지(ckeditor 이미지 경로 문제)</li>
-				<li>사진파일 변경 원하지 않아도 수정시 파일업로드</li>
-				<li>재료 사진은 없데이트 불가함</li>
-				
-				</ul>
+				<h1>프로젝트 수정</h1>
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<form method="post" enctype="multipart/form-data" name="formUploadFile" id="uploadForm" action="upload-update.php">
+					<form method="post" enctype="multipart/form-data" name="formUploadFile" id="uploadForm" action="upload-update_admin.php">
 						<?php
 							$id = $_GET['id'];
 							$sql = "SELECT * FROM ck LEFT JOIN userfiles ON ck.id = userfiles.editorid WHERE ck.id='{$id}'";

@@ -125,10 +125,10 @@ input:checked + .slider:before {
     <h1><b>프로젝트</b></h1><h2><?=$user_info?><br></h2>
     
     <div class="w3-section">
-      <label class="switch w3-left w3-margin-bottom">
+      <!-- <label class="switch w3-left w3-margin-bottom">
           <input type="checkbox">
           <span class="slider round"></span>
-      </label>
+      </label> -->
     </div>
       <!-- <div class="w3-section w3-bottombar w3-padding-16">
       <span class="w3-margin-right">Filter:</span> 
@@ -147,20 +147,16 @@ input:checked + .slider:before {
         
   <!-- Photo Grid-->
   <div class="w3-row-padding">
-      <div class="w3-display-container w3-quarter w3-container w3-margin-bottom" style="height:200px">
-        <div class="w3-display-topright w3-teal w3-padding w3-round">platform</div>
-          <a href="http://thekdc.co.kr/">
-            <img src="../img/platform/littlebits.png" alt="Norway" style="width:100%;" class="">
-          </a>
-        <div class="w3-container w3-white">
-          <p>코리아 드론콥터</p>
-        </div>
-      </div>
+      
   <?php
     while($row = mysqli_fetch_assoc($result)){
+      $itemsType = $row['type'];
+      if ($itemsType === 'it'){
+
       echo '
       <div class="w3-display-container w3-quarter w3-container w3-margin-bottom">
-        <div class="w3-display-topright w3-amber w3-padding w3-round">'.$row['platform'].'</div>
+      <div class="w3-display-topright w3-amber w3-padding w3-round" style="width: 90px; text-align:center; margin-top:35px;">'.$row['platform'].'</div>
+        <div class="w3-display-topright w3-teal w3-padding w3-round" style="width: 90px; text-align:center;"><b>items</b></div>
           <a href="youtubepage.php?id='.$row['id'].'">
             <img src="../editor/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="">
           </a>
@@ -168,19 +164,25 @@ input:checked + .slider:before {
           <p>'.($row['title']).'</p>
         </div>
       </div>';
+
+     }elseif ($itemsType === 'pl') {
+
+      echo '
+      <div class="w3-display-container w3-quarter w3-container w3-margin-bottom">
+      <div class="w3-display-topright w3-amber w3-padding w3-round" style="width: 90px; text-align:center; margin-top:35px; ">'.$row['platform'].'</div>
+      <div class="w3-display-topright w3-teal w3-padding w3-round" style="width: 90px; text-align:center;"><b>platform</b></div>
+          <a href="youtubepage.php?id='.$row['id'].'">
+            <img src="../editor/samples/Upload/'.($row['title_img_name']).'" alt="Norway" style="width:100%" class="">
+          </a>
+        <div class="w3-container w3-white">
+          <p>'.($row['title']).'</p>
+        </div>
+      </div>';
+
+     }
     }
   ?>
 
-    <div class="w3-display-container w3-quarter w3-container w3-margin-bottom">
-        <div class="w3-display-topright w3-teal w3-padding w3-round">platform</div>
-          <a href="http://thekdc.co.kr/">
-            <img src="../img/platform/koreadrone.jpg" alt="Norway" style="width:100%" class="">
-          </a>
-        <div class="w3-container w3-white">
-          <p>코리아 드론콥터</p>
-        </div>
-      </div>
-  </div>
 <!-- End page content -->
 </div>
 

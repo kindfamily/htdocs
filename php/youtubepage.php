@@ -25,8 +25,8 @@ if(isset($user_name)) {
 $update = '';
 $delete = '';
 if($user_type === '관리자') {
-    $update = $update."<a href='../editor/samples/update.php?id=".$row['id']."' class='w3-button w3-white w3-border w3-round-large'>수정</a>";
-    $delete = $delete."<a href='../editor/samples/delete.php?id=".$row['id']."' class='w3-button w3-white w3-border w3-round-large'>삭제</a>";  
+    $update = $update."<a href='../editor/samples/update_admin.php?id=".$row['id']."' class='w3-button w3-white w3-border w3-round-large'>수정</a>";
+    $delete = $delete."<a href='../editor/samples/delete_admin.php?id=".$row['id']."' class='w3-button w3-white w3-border w3-round-large'>삭제</a>";  
 } else {
     $update = $update.""; 
     $delete = $delete.""; 
@@ -261,7 +261,7 @@ table, tr, td, th{
                     <th scope="col">이름</th>
                     <th scope="col">사진</th>
                     <th scope="col">가격</th>
-                    <th scope="col">링크</th>
+                    <!-- <th scope="col">링크</th> -->
                 </tr>
             </thead>
             <?php
@@ -276,9 +276,17 @@ table, tr, td, th{
                     <td>'.$row['platform'].'</td>
                     <td>'.$row['title'].'</td>
                     <td><img src="../'.$row['path'].'/'.$row['fileName2'].'" style="width:8rem" alt=""></td>
-                    <td>'.$row['price'].'$</td>
+                    <td>'.$row['price'].'원</td>
                     <td>
-                    <div class="dropdown">
+                    
+                    </td>
+                </tbody>
+            ';
+            }
+            ?> 
+
+            <!-- drop down 장바구니 이동되는 부분 카트 페이지 활성화 할때 링크랑 함께 다시 살리기 
+            <div class="dropdown">
                         <button class="btn" style="border-left:1px solid #0d8bf2">
                         <i class="fa fa-cart-plus"></i>
                         </button>
@@ -287,11 +295,7 @@ table, tr, td, th{
                         <a href="./orderinfo.php?id='.$row['id'].'"><i class="fa fa-cart-plus"></i>장바구니</a>
                         </div>
                     </div>
-                    </td>
-                </tbody>
-            ';
-            }
-            ?> 
+            -->
         </table>
     </div>
     <!-- <div class="w3-third w3-container">

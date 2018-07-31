@@ -22,11 +22,11 @@
     
     <h1 class="w3-wide w3-padding-16 w3-large" style="width:100%; font-family: 'Amatic SC', cursive;">
             <input type="hidden" class="projectNum" name="custId" value="<?=$num_rows?>">
-            <input type="hidden" class="itemsNum" name="custId" value="<?=$num_rows2?>">
-            <input type="hidden" class="platformNum" name="custId" value="1">
-            <span id="projectNum" style="font-size: 2rem; font-weight: bold;">0</span><span> project</span> 
-            <span id="itemsNum" style="font-size: 2rem; font-weight: bold;">0</span><span> item</span> 
-            <span id="platformNum" style="font-size: 2rem; font-weight: bold;">0</span><span> platform</span> 
+            <!-- <input type="hidden" class="itemsNum" name="custId" value="<?=$num_rows2?>">
+            <input type="hidden" class="platformNum" name="custId" value="1"> -->
+            <span id="projectNum" style="font-size: 3rem; font-weight: bold;">0</span><span style="font-size: 3rem; font-weight: bold;"> project</span> 
+            <!-- <span id="itemsNum" style="font-size: 2rem; font-weight: bold;">0</span><span> item</span> 
+            <span id="platformNum" style="font-size: 2rem; font-weight: bold;">0</span><span> platform</span>  -->
     </h1>
     <a href="../php/community.php" class=" w3-round w3-button w3-black w3-padding-large w3-medium w3-opacity w3-hover-opacity-off" style="width:50%;">전체보기</a>
     <div class="w3-padding-large w3-padding-64">
@@ -219,12 +219,12 @@ Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
 <script>
 // 숫자 에니메이션
   var num = $('.projectNum').val();
-  var num2 = $('.itemsNum').val();
-  var num3 = $('.platformNum').val();
+  // var num2 = $('.itemsNum').val();
+  // var num3 = $('.platformNum').val();
   console.log(num);
   $('#projectNum').animateNumber({ number: num });
-  $('#itemsNum').animateNumber({ number: num2 });
-  $('#platformNum').animateNumber({ number: num3 });
+  // $('#itemsNum').animateNumber({ number: num2 });
+  // $('#platformNum').animateNumber({ number: num3 });
 
 </script>
 

@@ -3,6 +3,7 @@
 require("../lib/head_other.php");
 ?>
 
+
   <div class="main w3-container"  style="border: 1px solid black;">
 
     <div class="w3-border" style="padding-top: 30px; ">
@@ -70,13 +71,13 @@ require("../lib/head_other.php");
 
   <div class="col-25">
     <div class="container">
-      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>1</b></span></h4>
+      <h4>Cart <span style="color:black"><i class="fa fa-shopping-cart"></i> <b>1</b></span></h4>
       <?php
       $sql = "SELECT * FROM ck LEFT JOIN items ON ck.itemNum = items.id WHERE ck.id = '$id'";
       $result = mysqli_query($conn, $sql);
       while($row = mysqli_fetch_assoc($result)){
         echo '
-          <p>'.$row['title'].'<span class="price" value="'.$row['price'].'">'.$row['price'].'</span></p>
+          <p>'.$row['title'].'<span value="'.$row['price'].'">'.$row['price'].'</span></p>
           <hr>
           <p>Total <input id="price" type="hidden" value="'.$row['price'].'"> <span style="color:black">'.$row['price'].'</span></p>
           ';
@@ -87,64 +88,66 @@ require("../lib/head_other.php");
 
 </div>
   <button id="checkout" class="w3-right w3-margin w3-button w3-khaki w3-xlarge">결제</button>
+
+
 <script>
-   function checkOut() {
-            // input hidden으로 받은 재료 가격
-            // youtubepage.php 에서 파라미터 값으로 받은 정보( 사용자 이름, 주문번호 등 ) 는 chekOut > IMP.request_pay 로 전달 하기
-            var pri = document.getElementById("price");
-            console.log(pri.value);
 
-            var IMP = window.IMP; // 생략가능
-            IMP.init('imp44540441'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-            
-            IMP.request_pay({
-            pg : 'inicis', // version 1.1.0부터 지원.
-            pay_method : 'card',
-            merchant_uid : 'merchant_' + new Date().getTime(),
-            name : '주문명:결제테스트',
-            amount : pri.value,
-            buyer_email : 'iamport@siot.do',
-            buyer_name : '구매자이름',
-            buyer_tel : '010-1234-5678',
-            buyer_addr : '서울특별시 강남구 삼성동',
-            buyer_postcode : '123-456',
-            // 모바일 결제시 리다이렉트 url
-            m_redirect_url : 'https://www.yourdomain.com/payments/complete'
-            }, function(rsp) {
-                if ( rsp.success ) {
-                    var msg = '결제가 완료되었습니다.';
-                    msg += '고유ID : ' + rsp.imp_uid;
-                    msg += '상점 거래ID : ' + rsp.merchant_uid;
-                    msg += '결제 금액 : ' + rsp.paid_amount;
-                    msg += '카드 승인번호 : ' + rsp.apply_num;
+var pri = document.getElementById("price");
 
-                    //  ajax 이용해서 order_info 테이블에 내용 추가하기
 
-                    // 결제완료후 리다이렉트
-                    window.location.href = 'http://localhost:8080/';
-                } else {
-                    var msg = '결제에 실패하였습니다.';
-                    msg += '에러내용 : ' + rsp.error_msg;
-                }
-                alert(msg);
-            });
 
-        }
+document.getElementById("checkout").addEventListener('click', function () {
+         // input hidden으로 받은 재료 가격
+         // youtubepage.php 에서 파라미터 값으로 받은 정보( 사용자 이름, 주문번호 등 ) 는 chekOut > IMP.request_pay 로 전달 하기
 
-   document.getElementById("checkout").addEventListener('click', checkOut);
 
-  // 검수박스 체크되었을때 1000만원 토탈금액 변경
-  // 1 문서가 열렸을때 checkbox가 체크 되어 있는지 확인 하는 함수 만들기
-  // 참고: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_checkbox_checked
-  // 2 토탈가격을 불러와서 변수에 담고
-  // 3 토탈가격 + 10000원
-  // 4 합쳐진 가격을 토탈가격에 집어 넣기 ( + 검수가격 10000 span 추가하기 )
+         var IMP = window.IMP; // 생략가능
+         IMP.init('imp44540441'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+         
+         IMP.request_pay({
+         pg : 'inicis', // version 1.1.0부터 지원.
+         pay_method : 'card',
+         merchant_uid : 'merchant_' + new Date().getTime(),
+         name : '주문명:결제테스트',
+         amount : parseInt( pri.value ),
+         buyer_email : 'iamport@siot.do',
+         buyer_name : '구매자이름',
+         buyer_tel : '010-1234-5678',
+         buyer_addr : '서울특별시 강남구 삼성동',
+         buyer_postcode : '123-456',
+         // 모바일 결제시 리다이렉트 url
+         m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+         }, function(rsp) {
+             if ( rsp.success ) {
+                 var msg = '결제가 완료되었습니다.';
+                 msg += '고유ID : ' + rsp.imp_uid;
+                 msg += '상점 거래ID : ' + rsp.merchant_uid;
+                 msg += '결제 금액 : ' + rsp.paid_amount;
+                 msg += '카드 승인번호 : ' + rsp.apply_num;
+
+                 //  ajax 이용해서 order_info 테이블에 내용 추가하기
+
+                 // 결제완료후 리다이렉트
+                 window.location.href = 'http://localhost:8080/';
+             } else {
+                 var msg = '결제에 실패하였습니다.';
+                 msg += '에러내용 : ' + rsp.error_msg;
+             }
+             alert(msg);
+         });
+
+     });
+
+// 검수박스 체크되었을때 1000만원 토탈금액 변경
+// 1 문서가 열렸을때 checkbox가 체크 되어 있는지 확인 하는 함수 만들기
+// 참고: https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_checkbox_checked
+// 2 토탈가격을 불러와서 변수에 담고
+// 3 토탈가격 + 10000원
+// 4 합쳐진 가격을 토탈가격에 집어 넣기 ( + 검수가격 10000 span 추가하기 )
 
 
 
 </script>
-
-
 
 </body>
 </html>
