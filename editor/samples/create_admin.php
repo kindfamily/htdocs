@@ -102,7 +102,7 @@
 						<div id="play"></div>
 
 						
-						<button type="submit" class="btn btn-primary" name="btnSubmit" >전송</button>
+						<button type="submit" class="btn btn-primary" name="btnSubmit" style="margin-top:9px;">전송</button>
 						<!-- <a href="view.php" class="btn btn-info">Show Uploaded Files</a> -->
 					</form>
 					<br/>
